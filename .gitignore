@@ -4,3 +4,6 @@
 *.jar
 *.war
 *.ear
+/LabyrinttiRatkaisija/nbproject/private/
+/LabyrinttiRatkaisija/build/
+/VerkkoLelu/dist/
