@@ -31,6 +31,10 @@ public class ToolSwap implements KeyListener {
             System.out.println("Delete tool selected");
             p.addMouseListener(new DeleteTool(p));
         }
+        if (e.getKeyChar() == 'i') {
+            System.out.println("Dijkstra tool selected");
+            p.addMouseListener(new DijkstraTool(p));
+        }
         if (e.getKeyChar() == 'c') {
             System.out.println("Create tool selected");
             p.addMouseListener(new CreateTool(p));

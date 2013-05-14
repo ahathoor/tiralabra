@@ -7,6 +7,7 @@ package listeners;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
+import verkkolelu.model.Graph;
 import verkkolelu.model.Node;
 import verkkolelu.view.DrawPanel;
 
@@ -16,11 +17,13 @@ import verkkolelu.view.DrawPanel;
  */
 public class LinkTool implements MouseListener {
 
-    private DrawPanel ikkuna;
+    private DrawPanel panel;
+    private Graph graph;
     Node node1;
 
     public LinkTool(DrawPanel i) {
-        this.ikkuna = i;
+        this.panel = i;
+        graph = i.getGraph();
         reset();
     }
 
@@ -29,38 +32,40 @@ public class LinkTool implements MouseListener {
     }
 
     private void reset() {
-        ikkuna.setLabel(node1, "");
-        node1 = null;
-        ikkuna.repaint();
+        if (node1 != null) {
+            node1.setLabel("");
+            node1 = null;
+            panel.repaint();
+        }
     }
 
     private int askWeight() {
         while (true) {
-                String weightS = JOptionPane.showInputDialog("Insert weight");
-                try {
-                    int weight = Integer.parseInt(weightS);
-                    return weight;
-                } catch (NumberFormatException ex) {
-                    System.out.println("Input a proper number");
-                }
+            String weightS = JOptionPane.showInputDialog("Insert weight");
+            try {
+                int weight = Integer.parseInt(weightS);
+                return weight;
+            } catch (NumberFormatException ex) {
+                System.out.println("Input a proper number");
             }
+        }
     }
-    
+
     @Override
     public void mousePressed(MouseEvent e) {
-        Node pressedNode = ikkuna.nodeNearPoint(e.getPoint());
+        Node pressedNode = graph.nodeNearPoint(e.getPoint());
         if (pressedNode == null) {
             reset();
             return;
         }
         if (node1 == null) {
             node1 = pressedNode;
-            ikkuna.setLabel(node1, "link");
+            node1.setLabel("link");
         } else {
-            ikkuna.linkNodes(node1, pressedNode, askWeight());
+            panel.linkNodes(node1, pressedNode, askWeight());
             reset();
         }
-        ikkuna.repaint();
+        panel.repaint();
     }
 
     @Override

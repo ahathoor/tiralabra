@@ -4,6 +4,7 @@
  */
 package verkkolelu.model;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,8 +29,21 @@ public class Graph {
         return edges;
     }
     
-    public Node addNode() {
-        Node newNode = new Node();
+        public Node nodeNearPoint(Point p) {
+        for (Node n : nodes) {
+            if (n.getPoint().distance(p) <= 10) {
+                return n;
+            }
+        }
+        return null;
+    }
+        
+    public void moveNode(Node n, Point p) {
+        n.setPoint(p);
+    }
+    
+    public Node addNode(Point point) {
+        Node newNode = new Node(point);
         nodes.add(newNode);
         edges.put(newNode, new ArrayList<Edge>());
         return newNode;

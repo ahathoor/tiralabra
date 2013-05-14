@@ -6,6 +6,7 @@ package listeners;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import verkkolelu.model.Graph;
 import verkkolelu.model.Node;
 import verkkolelu.view.DrawPanel;
 
@@ -15,11 +16,13 @@ import verkkolelu.view.DrawPanel;
  */
 public class MoveTool implements MouseListener {
 
-    private DrawPanel p;
+    private DrawPanel panel;
+    private Graph graph;
     Node selected;
 
-    public MoveTool(DrawPanel p) {
-        this.p = p;
+    public MoveTool(DrawPanel i) {
+        this.panel = i;
+        graph = i.getGraph();
     }
 
     @Override
@@ -29,17 +32,17 @@ public class MoveTool implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if (selected != null) {
-            p.moveNode(selected, e.getPoint());
-            p.setLabel(selected, "");
+            graph.moveNode(selected, e.getPoint());
+            selected.setLabel("");
             selected = null;
         } else {
-            Node nodeNearClick = p.nodeNearPoint(e.getPoint());
+            Node nodeNearClick = graph.nodeNearPoint(e.getPoint());
             if (nodeNearClick != null) {
                 selected = nodeNearClick;
-                p.setLabel(selected, "move");
+                nodeNearClick.setLabel("move");
             }
         }
-        p.repaint();
+        panel.repaint();
     }
 
     @Override

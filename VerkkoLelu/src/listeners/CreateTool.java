@@ -6,6 +6,7 @@ package listeners;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import verkkolelu.model.Graph;
 import verkkolelu.view.DrawPanel;
 
 /**
@@ -14,10 +15,12 @@ import verkkolelu.view.DrawPanel;
  */
 public class CreateTool implements MouseListener{
 
-    private DrawPanel ikkuna;
+    private DrawPanel panel;
+    private Graph graph;
 
     public CreateTool(DrawPanel i) {
-        this.ikkuna = i;
+        this.panel = i;
+        graph = i.getGraph();
     }
     
     
@@ -28,8 +31,8 @@ public class CreateTool implements MouseListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-        ikkuna.addNode(e.getPoint());
-        ikkuna.repaint();
+        graph.addNode(e.getPoint());
+        panel.repaint();
     }
 
     @Override

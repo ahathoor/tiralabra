@@ -6,6 +6,7 @@ package listeners;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import verkkolelu.model.Graph;
 import verkkolelu.model.Node;
 import verkkolelu.view.DrawPanel;
 
@@ -15,10 +16,12 @@ import verkkolelu.view.DrawPanel;
  */
 public class DeleteTool implements MouseListener{
 
-    private DrawPanel p;
+    private DrawPanel panel;
+    private Graph graph;
 
-    public DeleteTool(DrawPanel p) {
-        this.p = p;
+    public DeleteTool(DrawPanel i) {
+        this.panel = i;
+        graph = i.getGraph();
     }
     
     
@@ -28,11 +31,11 @@ public class DeleteTool implements MouseListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-        Node nodeNearClick = p.nodeNearPoint(e.getPoint());
+        Node nodeNearClick = graph.nodeNearPoint(e.getPoint());
         if (nodeNearClick != null) {
-            p.deleteNode(nodeNearClick);
+            graph.deleteNode(nodeNearClick);
         }
-        p.repaint();
+        panel.repaint();
     }
 
     @Override
