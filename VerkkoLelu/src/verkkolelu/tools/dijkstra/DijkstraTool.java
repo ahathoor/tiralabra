@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package listeners;
+package verkkolelu.tools.dijkstra;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -11,13 +11,15 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 import verkkolelu.model.Graph;
 import verkkolelu.model.Node;
+import verkkolelu.tools.Tool;
 import verkkolelu.view.DrawPanel;
 
 /**
  *
  * @author ahathoor
  */
-public class DijkstraTool implements MouseListener {
+public class DijkstraTool implements MouseListener, Tool {
+
 
     private class NodeComparator implements Comparator<Node> {
 
@@ -26,15 +28,15 @@ public class DijkstraTool implements MouseListener {
         public NodeComparator(HashMap<Node, Integer> dist) {
             this.dist = dist;
         }
-        
+
         @Override
         public int compare(Node o1, Node o2) {
             return dist.get(o2) - dist.get(o1);
         }
     }
-    
     private DrawPanel panel;
     private Graph graph;
+    Dijkstrawindow dw;
     Node start;
     Node end;
     HashMap<Node, Integer> dist;
@@ -46,7 +48,8 @@ public class DijkstraTool implements MouseListener {
         graph = i.getGraph();
         dist = new HashMap<>();
         previous = new HashMap<>();
-        Q = new PriorityQueue<>(100, new NodeComparator(dist));
+        Q = new PriorityQueue<>(graph.nodeCount(), new NodeComparator(dist));
+        dw = new Dijkstrawindow(this);
     }
 
     @Override
@@ -89,5 +92,16 @@ public class DijkstraTool implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+    
+    
+    @Override
+    public void select() {
+        System.out.println("Dijkstra tool selected");
+    }
+
+    @Override
+    public void deselect() {
+        dw.close();
     }
 }

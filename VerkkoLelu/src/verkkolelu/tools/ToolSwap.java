@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package listeners;
+package verkkolelu.tools;
 
+import verkkolelu.tools.dijkstra.DijkstraTool;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
@@ -14,45 +15,52 @@ import verkkolelu.view.DrawPanel;
  * @author ahathoor
  */
 public class ToolSwap implements KeyListener {
-
+    
     private DrawPanel p;
-
+    private Tool selectedTool;
+    
     public ToolSwap(DrawPanel p) {
         this.p = p;
+        selectTool(new CreateTool(p));
     }
-
+    
+    private void selectTool(Tool tool) {
+        deselectCurrentTool();
+        selectedTool = tool;
+        p.addMouseListener(tool);
+        tool.select();
+    }
+    
+    private void deselectCurrentTool() {
+        if (selectedTool != null) {
+            p.removeMouseListener(selectedTool);
+            selectedTool.deselect();
+        }
+    }
+    
     @Override
     public void keyTyped(KeyEvent e) {
-        MouseListener[] listeners = p.getMouseListeners();
-        for (int i = 0; i < listeners.length; i++) {
-            p.removeMouseListener(listeners[i]);
-        }
         if (e.getKeyChar() == 'd') {
-            System.out.println("Delete tool selected");
-            p.addMouseListener(new DeleteTool(p));
+            selectTool(new DeleteTool(p));
         }
         if (e.getKeyChar() == 'i') {
-            System.out.println("Dijkstra tool selected");
-            p.addMouseListener(new DijkstraTool(p));
+            selectTool(new DijkstraTool(p));
         }
         if (e.getKeyChar() == 'c') {
-            System.out.println("Create tool selected");
-            p.addMouseListener(new CreateTool(p));
+            selectTool(new CreateTool(p));
         }
         if (e.getKeyChar() == 'l') {
-            System.out.println("Link tool selected");
-            p.addMouseListener(new LinkTool(p));
+            selectTool(new LinkTool(p));
         }
         if (e.getKeyChar() == 'm') {
-            System.out.println("Move tool selected");
-            p.addMouseListener(new MoveTool(p));
+            selectTool(new MoveTool(p));
         }
     }
-
+    
     @Override
     public void keyPressed(KeyEvent e) {
     }
-
+    
     @Override
     public void keyReleased(KeyEvent e) {
     }

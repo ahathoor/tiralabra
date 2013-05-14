@@ -4,7 +4,7 @@
  */
 package verkkolelu.view;
 
-import listeners.ToolSwap;
+import verkkolelu.tools.ToolSwap;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;

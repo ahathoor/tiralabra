@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package listeners;
+package verkkolelu.tools;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -15,7 +15,7 @@ import verkkolelu.view.DrawPanel;
  *
  * @author ahathoor
  */
-public class LinkTool implements MouseListener {
+public class LinkTool implements MouseListener, Tool {
 
     private DrawPanel panel;
     private Graph graph;
@@ -78,5 +78,14 @@ public class LinkTool implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public void select() {
+        System.out.println("Link tool selected");
+    }
+
+    @Override
+    public void deselect() {
     }
 }

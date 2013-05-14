@@ -20,6 +20,10 @@ public class Graph {
         nodes = new ArrayList<>();
         edges = new HashMap<>();
     }
+    
+    public int nodeCount() {
+        return nodes.size();
+    }
 
     public ArrayList<Node> getNodes() {
         return nodes;
