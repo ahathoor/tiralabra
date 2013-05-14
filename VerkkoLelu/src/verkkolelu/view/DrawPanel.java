@@ -4,6 +4,7 @@
  */
 package verkkolelu.view;
 
+import verkkolelu.model.GraphChangeListener;
 import verkkolelu.tools.ToolSwap;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -17,12 +18,13 @@ import verkkolelu.model.Node;
  *
  * @author ahathoor
  */
-public class DrawPanel extends JPanel {
+public class DrawPanel extends JPanel implements GraphChangeListener{
 
     Graph graph;
 
     public DrawPanel() {
         graph = new Graph();
+        graph.addListener(this);
         this.addKeyListener(new ToolSwap(this));
         this.setFocusable(true);
         this.requestFocus();
@@ -39,10 +41,6 @@ public class DrawPanel extends JPanel {
 
     public Graph getGraph() {
         return graph;
-    }
-
-    public void linkNodes(Node n1, Node n2, int weight) {
-        graph.linkNodes(n1, n2, weight);
     }
 
     @Override
@@ -63,5 +61,10 @@ public class DrawPanel extends JPanel {
                 g.drawChars(("" + weight).toCharArray(), 0, ("" + weight).length(), (p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
             }
         }
+    }
+
+    @Override
+    public void graphChanged() {
+        this.repaint();
     }
 }

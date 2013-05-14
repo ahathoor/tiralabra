@@ -33,4 +33,8 @@ public class Dijkstrawindow extends JFrame {
 //        WindowEvent wev = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
 //        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(wev);
     }
+
+    void open() {
+        setVisible(true);
+    }
 }

@@ -8,6 +8,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.PriorityQueue;
+import java.util.Scanner;
+import verkkolelu.model.Edge;
 import verkkolelu.model.Graph;
 import verkkolelu.model.Node;
 import verkkolelu.tools.Tool;
@@ -19,7 +21,6 @@ import verkkolelu.view.DrawPanel;
  */
 public class DijkstraTool implements MouseListener, Tool {
 
-    private DrawPanel panel;
     private Graph graph;
     Dijkstrawindow dw;
     Node start;
@@ -28,13 +29,46 @@ public class DijkstraTool implements MouseListener, Tool {
     HashMap<Node, Node> previous;
     PriorityQueue<Node> Q;
 
-    public DijkstraTool(DrawPanel i) {
-        this.panel = i;
-        graph = i.getGraph();
+    public DijkstraTool(Graph i) {
+        graph = i;
         dist = new HashMap<>();
         previous = new HashMap<>();
         Q = new PriorityQueue<>(graph.nodeCount(), new NodeComparator(dist));
         dw = new Dijkstrawindow(this);
+    }
+
+    private void init() {
+        for (Node n : graph.getNodes()) {
+            dist.put(n, Integer.MAX_VALUE);
+            previous.put(n, null);
+            Q.add(n);
+            n.setLabel("INF");
+        }
+
+        dist.put(start, 0);
+        Q.remove(start);
+        Q.add(start);
+        start.setLabel("0");
+
+        while (!Q.isEmpty()) {
+            Node u = Q.poll();
+            if (dist.get(u) == Integer.MAX_VALUE) {
+                System.out.println("IMPOSSIBLE");
+                break;
+            }
+            for (Edge edge : graph.getEdges().get(u)) {
+                Node v = edge.getNode2();
+                int alt = dist.get(u) + edge.getWeight();
+                if (alt < dist.get(v)) {
+                    dist.put(v, alt);
+                    previous.put(v, u);
+                    v.setLabel("" + alt);
+                    //TODO Decrease key implementation
+                    Q.remove(v);
+                    Q.add(v);
+                }
+            }
+        }
     }
 
     @Override
@@ -67,8 +101,9 @@ public class DijkstraTool implements MouseListener, Tool {
                 end.setLabel("End");
             } else {
             }
+        } else {
+            init();
         }
-        panel.repaint();
     }
 
     @Override
@@ -86,6 +121,7 @@ public class DijkstraTool implements MouseListener, Tool {
     @Override
     public void select() {
         System.out.println("Dijkstra tool selected");
+        dw.open();
     }
 
     @Override

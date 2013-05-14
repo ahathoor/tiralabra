@@ -11,7 +11,6 @@ import java.awt.event.MouseListener;
  * @author ahathoor
  */
 public interface Tool extends MouseListener {
-    //TODO Tools depend on Graph not panel
     public void select();
     public void deselect();
 }

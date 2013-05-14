@@ -15,12 +15,10 @@ import verkkolelu.view.DrawPanel;
  */
 public class CreateTool implements MouseListener, Tool {
 
-    private DrawPanel panel;
     private Graph graph;
 
-    public CreateTool(DrawPanel i) {
-        this.panel = i;
-        graph = i.getGraph();
+    public CreateTool(Graph graph) {
+        this.graph = graph;
     }
 
     @Override
@@ -30,7 +28,6 @@ public class CreateTool implements MouseListener, Tool {
     @Override
     public void mousePressed(MouseEvent e) {
         graph.addNode(e.getPoint());
-        panel.repaint();
     }
 
     @Override

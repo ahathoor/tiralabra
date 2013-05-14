@@ -16,12 +16,10 @@ import verkkolelu.view.DrawPanel;
  */
 public class DeleteTool implements MouseListener, Tool {
 
-    private DrawPanel panel;
     private Graph graph;
 
-    public DeleteTool(DrawPanel i) {
-        this.panel = i;
-        graph = i.getGraph();
+    public DeleteTool(Graph graph) {
+        this.graph = graph;
     }
 
     @Override
@@ -34,7 +32,6 @@ public class DeleteTool implements MouseListener, Tool {
         if (nodeNearClick != null) {
             graph.deleteNode(nodeNearClick);
         }
-        panel.repaint();
     }
 
     @Override

@@ -17,13 +17,11 @@ import verkkolelu.view.DrawPanel;
  */
 public class LinkTool implements MouseListener, Tool {
 
-    private DrawPanel panel;
     private Graph graph;
     Node node1;
 
-    public LinkTool(DrawPanel i) {
-        this.panel = i;
-        graph = i.getGraph();
+    public LinkTool(Graph graph) {
+        this.graph = graph;
         reset();
     }
 
@@ -35,7 +33,6 @@ public class LinkTool implements MouseListener, Tool {
         if (node1 != null) {
             node1.setLabel("");
             node1 = null;
-            panel.repaint();
         }
     }
 
@@ -62,10 +59,9 @@ public class LinkTool implements MouseListener, Tool {
             node1 = pressedNode;
             node1.setLabel("link");
         } else {
-            panel.linkNodes(node1, pressedNode, askWeight());
+            graph.linkNodes(node1, pressedNode, askWeight());
             reset();
         }
-        panel.repaint();
     }
 
     @Override

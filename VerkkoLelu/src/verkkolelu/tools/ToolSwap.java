@@ -21,7 +21,7 @@ public class ToolSwap implements KeyListener {
     
     public ToolSwap(DrawPanel p) {
         this.p = p;
-        selectTool(new CreateTool(p));
+        selectTool(new CreateTool(p.getGraph()));
     }
     
     private void selectTool(Tool tool) {
@@ -41,19 +41,19 @@ public class ToolSwap implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
         if (e.getKeyChar() == 'd') {
-            selectTool(new DeleteTool(p));
+            selectTool(new DeleteTool(p.getGraph()));
         }
         if (e.getKeyChar() == 'i') {
-            selectTool(new DijkstraTool(p));
+            selectTool(new DijkstraTool(p.getGraph()));
         }
         if (e.getKeyChar() == 'c') {
-            selectTool(new CreateTool(p));
+            selectTool(new CreateTool(p.getGraph()));
         }
         if (e.getKeyChar() == 'l') {
-            selectTool(new LinkTool(p));
+            selectTool(new LinkTool(p.getGraph()));
         }
         if (e.getKeyChar() == 'm') {
-            selectTool(new MoveTool(p));
+            selectTool(new MoveTool(p.getGraph()));
         }
     }
     

@@ -16,13 +16,11 @@ import verkkolelu.view.DrawPanel;
  */
 public class MoveTool implements MouseListener, Tool {
 
-    private DrawPanel panel;
     private Graph graph;
     Node selected;
 
-    public MoveTool(DrawPanel i) {
-        this.panel = i;
-        graph = i.getGraph();
+    public MoveTool(Graph i) {
+        graph = i;
     }
 
     @Override
@@ -32,7 +30,7 @@ public class MoveTool implements MouseListener, Tool {
     @Override
     public void mousePressed(MouseEvent e) {
         if (selected != null) {
-            graph.moveNode(selected, e.getPoint());
+            selected.setPoint(e.getPoint());
             selected.setLabel("");
             selected = null;
         } else {
@@ -42,7 +40,6 @@ public class MoveTool implements MouseListener, Tool {
                 nodeNearClick.setLabel("move");
             }
         }
-        panel.repaint();
     }
 
     @Override
