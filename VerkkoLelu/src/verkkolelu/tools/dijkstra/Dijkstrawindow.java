@@ -5,8 +5,6 @@
 package verkkolelu.tools.dijkstra;
 
 import java.awt.HeadlessException;
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 /**
@@ -19,6 +17,7 @@ public class Dijkstrawindow extends JFrame {
 
     public Dijkstrawindow(DijkstraTool d) throws HeadlessException {
         super("DijkstraTool");
+        setFocusableWindowState(false);
         this.d = d;
         DijkstraPanel p = new DijkstraPanel(d);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -26,10 +25,12 @@ public class Dijkstrawindow extends JFrame {
         pack();
         setBounds(5, 5, 400, 300);
         setVisible(true);
+        setFocusableWindowState(true);
     }
 
     public void close() {
-        WindowEvent wev = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(wev);
+        setVisible(false);
+//        WindowEvent wev = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+//        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(wev);
     }
 }

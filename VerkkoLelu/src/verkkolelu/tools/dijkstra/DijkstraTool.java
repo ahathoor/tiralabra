@@ -6,7 +6,6 @@ package verkkolelu.tools.dijkstra;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 import verkkolelu.model.Graph;
@@ -20,20 +19,6 @@ import verkkolelu.view.DrawPanel;
  */
 public class DijkstraTool implements MouseListener, Tool {
 
-
-    private class NodeComparator implements Comparator<Node> {
-
-        private HashMap<Node, Integer> dist;
-
-        public NodeComparator(HashMap<Node, Integer> dist) {
-            this.dist = dist;
-        }
-
-        @Override
-        public int compare(Node o1, Node o2) {
-            return dist.get(o2) - dist.get(o1);
-        }
-    }
     private DrawPanel panel;
     private Graph graph;
     Dijkstrawindow dw;
@@ -57,8 +42,12 @@ public class DijkstraTool implements MouseListener, Tool {
     }
 
     public void reset() {
-        start.setLabel("");
-        end.setLabel("");
+        if (start != null) {
+            start.setLabel("");
+        }
+        if (end != null) {
+            end.setLabel("");
+        }
         start = null;
         end = null;
     }
@@ -93,8 +82,7 @@ public class DijkstraTool implements MouseListener, Tool {
     @Override
     public void mouseExited(MouseEvent e) {
     }
-    
-    
+
     @Override
     public void select() {
         System.out.println("Dijkstra tool selected");
@@ -102,6 +90,7 @@ public class DijkstraTool implements MouseListener, Tool {
 
     @Override
     public void deselect() {
+        reset();
         dw.close();
     }
 }

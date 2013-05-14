@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/view/Ikkuna.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/model/Graph.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/model/Node.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/model/Edge.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/view/DrawPanel.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/tools/CreateTool.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/tools/DeleteTool.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/VerkkoLelu.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/tools/ToolSwap.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/tools/LinkTool.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/tools/MoveTool.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/tools/dijkstra/DijkstraTool.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/tools/dijkstra/Dijkstrawindow.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/tools/dijkstra/DijkstraPanel.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/tools/Tool.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/test/verkkolelu/tools/dijkstra/DijkstraToolTest.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/src/verkkolelu/tools/dijkstra/NodeComparator.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/test/verkkolelu/tools/dijkstra/NodeComparatorTest.java</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/build.xml</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/manifest.mf</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/dist/README.TXT</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/nbproject/build-impl.xml</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/nbproject/project.properties</file>
+        <file>file:/C:/Users/ahathoor/Documents/GitHub/tiralabra/VerkkoLelu/nbproject/project.xml</file>
+    </open-files>
 </project-private>

@@ -7,15 +7,19 @@ package verkkolelu.model;
 import java.awt.Color;
 import java.awt.Point;
 
-
 /**
  *
  * @author ahathoor
  */
 public class Node {
+
     private Color color;
     private String label;
     private Point point;
+
+    public Node() {
+        this(new Point(0, 0));
+    }
 
     public Node(Point point) {
         label = "";
@@ -46,8 +50,4 @@ public class Node {
     public void setLabel(String label) {
         this.label = label;
     }
-    
-    
-    
-    
 }
