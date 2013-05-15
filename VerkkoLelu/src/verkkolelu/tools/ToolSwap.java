@@ -8,6 +8,8 @@ import verkkolelu.tools.dijkstra.DijkstraTool;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
+import javax.swing.JOptionPane;
+import verkkolelu.model.Graph;
 import verkkolelu.view.DrawPanel;
 
 /**
@@ -49,11 +51,24 @@ public class ToolSwap implements KeyListener {
         if (e.getKeyChar() == 'c') {
             selectTool(new CreateTool(p.getGraph()));
         }
+        if (e.getKeyChar() == 'm') {
+            selectTool(new MoveTool(p.getGraph()));
+        }
         if (e.getKeyChar() == 'l') {
             selectTool(new LinkTool(p.getGraph()));
         }
-        if (e.getKeyChar() == 'm') {
-            selectTool(new MoveTool(p.getGraph()));
+        if (e.getKeyChar() == 'o') {
+            System.out.println(p.getGraph().saveToString());
+        }
+        if (e.getKeyChar() == 'p') {
+            String saveString = JOptionPane.showInputDialog("Paste the save string here");
+            try {
+                Graph loadedGraph = new Graph();
+                loadedGraph.loadFromString(saveString);
+                p.setGraph(loadedGraph);
+            } catch (NumberFormatException ex) {
+                System.out.println("Loading of the input string caused an error: " + ex.getLocalizedMessage());
+            }
         }
     }
     

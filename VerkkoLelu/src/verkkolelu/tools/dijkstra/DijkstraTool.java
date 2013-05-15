@@ -49,24 +49,27 @@ public class DijkstraTool implements MouseListener, Tool {
         Q.remove(start);
         Q.add(start);
         start.setLabel("0");
+    }
 
-        while (!Q.isEmpty()) {
-            Node u = Q.poll();
-            if (dist.get(u) == Integer.MAX_VALUE) {
-                System.out.println("IMPOSSIBLE");
-                break;
-            }
-            for (Edge edge : graph.getEdges().get(u)) {
-                Node v = edge.getNode2();
-                int alt = dist.get(u) + edge.getWeight();
-                if (alt < dist.get(v)) {
-                    dist.put(v, alt);
-                    previous.put(v, u);
-                    v.setLabel("" + alt);
-                    //TODO Decrease key implementation
-                    Q.remove(v);
-                    Q.add(v);
-                }
+    private void step() {
+        if (Q.isEmpty()) {
+            return;
+        }
+        Node u = Q.poll();
+        if (dist.get(u) == Integer.MAX_VALUE) {
+            System.out.println("IMPOSSIBLE");
+            return;
+        }
+        for (Edge edge : graph.getEdges().get(u)) {
+            Node v = edge.getNode2();
+            int alt = dist.get(u) + edge.getWeight();
+            if (alt < dist.get(v)) {
+                dist.put(v, alt);
+                previous.put(v, u);
+                v.setLabel("dist:" + alt);
+                //TODO Decrease key implementation
+                Q.remove(v);
+                Q.add(v);
             }
         }
     }
@@ -128,5 +131,14 @@ public class DijkstraTool implements MouseListener, Tool {
     public void deselect() {
         reset();
         dw.close();
+    }
+
+    void command(DijkstraCommand command) {
+        if (command == DijkstraCommand.INIT) {
+            init();
+        }
+        if (command == DijkstraCommand.STEP) {
+            step();
+        }
     }
 }

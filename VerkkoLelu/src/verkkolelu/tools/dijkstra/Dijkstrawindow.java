@@ -23,7 +23,6 @@ public class Dijkstrawindow extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         add(p);
         pack();
-        setBounds(5, 5, 400, 300);
         setVisible(true);
         setFocusableWindowState(true);
     }

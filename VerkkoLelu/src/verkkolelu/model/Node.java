@@ -15,11 +15,13 @@ public class Node {
 
     private Color color;
     private String label;
+    private String sign;
     private Point point;
     private Graph graph;
-    
+
     public Node(Point point, Graph graph) {
         label = "";
+        sign = "";
         color = Color.black;
         this.point = point;
         this.graph = graph;
@@ -28,6 +30,14 @@ public class Node {
     public void setPoint(Point point) {
         graph.notifyListeners();
         this.point = point;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
+
+    public String getSign() {
+        return sign;
     }
 
     public Point getPoint() {
