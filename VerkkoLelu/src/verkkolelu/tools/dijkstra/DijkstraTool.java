@@ -38,11 +38,14 @@ public class DijkstraTool implements MouseListener, Tool {
     }
 
     private void init() {
+        char c = 'A';
         for (Node n : graph.getNodes()) {
             dist.put(n, Integer.MAX_VALUE);
             previous.put(n, null);
             Q.add(n);
             n.setLabel("INF");
+            n.setSign(""+c);
+            c++;
         }
 
         dist.put(start, 0);
@@ -53,11 +56,12 @@ public class DijkstraTool implements MouseListener, Tool {
 
     private void step() {
         if (Q.isEmpty()) {
+            System.out.println("The algorithm has finished");
             return;
         }
         Node u = Q.poll();
         if (dist.get(u) == Integer.MAX_VALUE) {
-            System.out.println("IMPOSSIBLE");
+            System.out.println("Rest of the nodes unreachable");
             return;
         }
         for (Edge edge : graph.getEdges().get(u)) {
@@ -66,7 +70,7 @@ public class DijkstraTool implements MouseListener, Tool {
             if (alt < dist.get(v)) {
                 dist.put(v, alt);
                 previous.put(v, u);
-                v.setLabel("dist:" + alt);
+                v.setLabel("prev: " + previous.get(v).getSign() + " dist: " + alt);
                 //TODO Decrease key implementation
                 Q.remove(v);
                 Q.add(v);

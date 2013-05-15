@@ -1,2 +1,4 @@
 Tools should manipulate the panel to add themselves as listeners as needed.
 This way the tools can also act as keyboard listeners.
+
+Colors and labels are not saved
