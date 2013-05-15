@@ -5,9 +5,12 @@
 package verkkolelu.model;
 
 /**
- *
- * @author ahathoor
+ * A listener for Graph changes
+ * @author Mikko Tamminen
  */
 public interface GraphChangeListener {
+    /**
+     * Graph calls this on all it's listeners when it changes.
+     */
     public void graphChanged();
 }

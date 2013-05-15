@@ -8,8 +8,9 @@ import java.awt.Color;
 import java.awt.Point;
 
 /**
+ * Node class
  *
- * @author ahathoor
+ * @author Mikko Tamminen
  */
 public class Node {
 
@@ -19,6 +20,12 @@ public class Node {
     private Point point;
     private Graph graph;
 
+    /**
+     * Creates a new node at the given point and in the given graph
+     *
+     * @param point
+     * @param graph
+     */
     public Node(Point point, Graph graph) {
         label = "";
         sign = "";
@@ -31,7 +38,7 @@ public class Node {
         graph.notifyListeners();
         this.point = point;
     }
-
+    
     public void setSign(String sign) {
         this.sign = sign;
     }

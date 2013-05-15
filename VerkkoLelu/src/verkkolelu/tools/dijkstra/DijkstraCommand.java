@@ -5,10 +5,16 @@
 package verkkolelu.tools.dijkstra;
 
 /**
- *
+ * Possible commands for the Dijkstra tool
  * @author ahathoor
  */
 public enum DijkstraCommand {
+    /**
+     * Initialise the Dijkstra
+     */
     INIT,
+    /**
+     * Step the algorithm forward
+     */
     STEP
 }

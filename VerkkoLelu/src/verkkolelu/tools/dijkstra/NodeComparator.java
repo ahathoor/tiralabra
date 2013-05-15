@@ -12,7 +12,7 @@ import verkkolelu.model.Node;
  * Compares the two nodes using the provided HashMap for key values
  * @author ahathoor
  */
-public class NodeComparator implements Comparator<Node> {
+class NodeComparator implements Comparator<Node> {
 
     private HashMap<Node, Integer> dist;
 

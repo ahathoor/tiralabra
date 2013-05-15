@@ -9,7 +9,6 @@ import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import verkkolelu.model.Graph;
 import verkkolelu.model.Node;
-import verkkolelu.view.DrawPanel;
 
 /**
  *

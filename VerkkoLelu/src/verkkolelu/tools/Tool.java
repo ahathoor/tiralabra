@@ -7,8 +7,8 @@ package verkkolelu.tools;
 import java.awt.event.MouseListener;
 
 /**
- *
- * @author ahathoor
+ * Interface for the tools for the VerkkoLelu program
+ * @author Mikko Tamminen
  */
 public interface Tool extends MouseListener {
     public void select();

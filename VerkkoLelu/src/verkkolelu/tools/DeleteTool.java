@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import verkkolelu.model.Graph;
 import verkkolelu.model.Node;
-import verkkolelu.view.DrawPanel;
 
 /**
  *

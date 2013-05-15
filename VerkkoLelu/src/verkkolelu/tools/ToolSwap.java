@@ -4,12 +4,11 @@
  */
 package verkkolelu.tools;
 
-import verkkolelu.tools.dijkstra.DijkstraTool;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import verkkolelu.model.Graph;
+import verkkolelu.tools.dijkstra.DijkstraTool;
 import verkkolelu.view.DrawPanel;
 
 /**

@@ -22,12 +22,17 @@ public class Graph {
     public Graph() {
         empty();
     }
-    
+
     public void empty() {
         nodes = new ArrayList<>();
         edges = new HashMap<>();
     }
-    
+
+    /**
+     * Generates a string from the graph that can be used to load the graph
+     *
+     * @return
+     */
     public String saveToString() {
         String nodesave = "";
         for (int i = 0; i < nodes.size(); i++) {
@@ -36,20 +41,25 @@ public class Graph {
         }
         String edgeSave = "";
         Iterator<Entry<Node, ArrayList<Edge>>> edgeI = edges.entrySet().iterator();
-        while(edgeI.hasNext()) {
+        while (edgeI.hasNext()) {
             Entry<Node, ArrayList<Edge>> edgeEntry = edgeI.next();
             Node node1 = edgeEntry.getKey();
             for (Edge edge : edgeEntry.getValue()) {
                 Node node2 = edge.getNode2();
                 int weight = edge.getWeight();
-                edgeSave += nodes.indexOf(node1) + "<edgeInternal>" +
-                        nodes.indexOf(node2) + "<edgeInternal>" +
-                        weight + "<edge>";
+                edgeSave += nodes.indexOf(node1) + "<edgeInternal>"
+                        + nodes.indexOf(node2) + "<edgeInternal>"
+                        + weight + "<edge>";
             }
         }
         return nodesave + "<graphInternal>" + edgeSave;
     }
 
+    /**
+     * Loads the graph from a saved string
+     *
+     * @param save
+     */
     public void loadFromString(String save) {
         empty();
         String nodesave = save.split("<graphInternal>")[0];
@@ -58,9 +68,9 @@ public class Graph {
             int index = Integer.parseInt(nodeString.split("<nodeInternal>")[0]);
             int x = Integer.parseInt(nodeString.split("<nodeInternal>")[1]);
             int y = Integer.parseInt(nodeString.split("<nodeInternal>")[2]);
-            addNode(new Point(x,y));
+            addNode(new Point(x, y));
         }
-        
+
         String edgeSave = save.split("<graphInternal>")[1];
         String[] edgeStrings = edgeSave.split("<edge>");
         for (String edgeString : edgeStrings) {
@@ -83,6 +93,12 @@ public class Graph {
         return edges;
     }
 
+    /**
+     * Returns a node nearest to the given point.
+     *
+     * @param p
+     * @return
+     */
     public Node nodeNearPoint(Point p) {
         for (Node n : nodes) {
             if (n.getPoint().distance(p) <= 10) {
@@ -92,6 +108,12 @@ public class Graph {
         return null;
     }
 
+    /**
+     * Adds a new Node at the given point
+     *
+     * @param point
+     * @return
+     */
     public Node addNode(Point point) {
         notifyListeners();
         Node newNode = new Node(point, this);
@@ -100,6 +122,13 @@ public class Graph {
         return newNode;
     }
 
+    /**
+     * Makes a two-way edge between given nodes, with the given weight
+     *
+     * @param n1
+     * @param n2
+     * @param weight
+     */
     public void linkNodes(Node n1, Node n2, int weight) {
         notifyListeners();
         Edge edgeFrom1to2 = new Edge(n2, weight);
@@ -108,6 +137,11 @@ public class Graph {
         edges.get(n2).add(edgeFrom2to1);
     }
 
+    /**
+     * Deletes a given node from the graph
+     *
+     * @param n
+     */
     public void deleteNode(Node n) {
         notifyListeners();
         ArrayList<Edge> edgesFromN = edges.get(n);
@@ -124,16 +158,23 @@ public class Graph {
     }
     private ArrayList<GraphChangeListener> graphListeners = new ArrayList();
 
-    public void notifyListeners() {
+    protected void notifyListeners() {
         for (GraphChangeListener graphChangeListener : graphListeners) {
             graphChangeListener.graphChanged();
         }
     }
 
+    /**
+     * Adds a GraphChangeListener to this graph
+     * @param gl 
+     */
     public void addListener(GraphChangeListener gl) {
         graphListeners.add(gl);
     }
-
+    /**
+     * Removes a GraphChangeListener from this graph
+     * @param gl 
+     */
     public void removeListener(GraphChangeListener gl) {
         graphListeners.remove(gl);
     }

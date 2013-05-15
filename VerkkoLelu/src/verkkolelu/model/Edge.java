@@ -15,6 +15,11 @@ public class Edge {
     private int weight;
     private Color color;
 
+    /**
+     * Creates a new Edge that leads to a given node, and has the given weight
+     * @param node2
+     * @param weight 
+     */
     public Edge(Node node2, int weight) {
         this.node2 = node2;
         this.weight = weight;

@@ -37,6 +37,9 @@ public class DijkstraTool implements MouseListener, Tool {
         dw = new Dijkstrawindow(this);
     }
 
+    /**
+     * Initializes the Dijkstra algorithm
+     */
     private void init() {
         char c = 'A';
         for (Node n : graph.getNodes()) {
@@ -54,6 +57,9 @@ public class DijkstraTool implements MouseListener, Tool {
         start.setLabel("0");
     }
 
+    /**
+     * Steps the algorithm forward
+     */
     private void step() {
         if (Q.isEmpty()) {
             System.out.println("The algorithm has finished");

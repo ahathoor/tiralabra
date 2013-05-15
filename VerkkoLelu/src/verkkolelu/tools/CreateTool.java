@@ -7,7 +7,6 @@ package verkkolelu.tools;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import verkkolelu.model.Graph;
-import verkkolelu.view.DrawPanel;
 
 /**
  *
