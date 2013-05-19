@@ -6,7 +6,7 @@ package verkkolelu.view;
 
 import java.awt.Color;
 import verkkolelu.model.GraphChangeListener;
-import verkkolelu.tools.ToolSwap;
+import verkkolelu.tools.toolswapper.ToolSwap;
 import java.awt.Graphics;
 import java.awt.Point;
 import javax.swing.JPanel;

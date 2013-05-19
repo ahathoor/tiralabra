@@ -2,12 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package verkkolelu.tools;
+package verkkolelu.tools.toolswapper;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import verkkolelu.model.Graph;
+import verkkolelu.tools.CreateTool;
+import verkkolelu.tools.DeleteTool;
+import verkkolelu.tools.LinkTool;
+import verkkolelu.tools.MoveTool;
+import verkkolelu.tools.Tool;
 import verkkolelu.tools.dijkstra.DijkstraTool;
 import verkkolelu.view.DrawPanel;
 
