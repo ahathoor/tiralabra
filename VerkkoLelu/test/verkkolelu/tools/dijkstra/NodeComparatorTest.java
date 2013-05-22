@@ -5,7 +5,7 @@
 package verkkolelu.tools.dijkstra;
 
 import java.awt.Point;
-import java.util.HashMap;
+import verkkolelu.util.HashMap;
 import java.util.PriorityQueue;
 import org.junit.Before;
 import org.junit.Test;

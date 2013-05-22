@@ -34,11 +34,19 @@ public class Graph {
      * @return
      */
     public String saveToString() {
+        /**
+         * Save the nodes
+         */
         String nodesave = "";
         for (int i = 0; i < nodes.size(); i++) {
             Node node = nodes.get(i);
-            nodesave += i + "<nodeInternal>" + node.getPoint().x + "<nodeInternal>" + node.getPoint().y + "<node>";
+            nodesave += i + "<nodeInternal>" 
+                    + node.getPoint().x + "<nodeInternal>" 
+                    + node.getPoint().y + "<node>";
         }
+        /**
+         * Save the edges
+         */
         String edgeSave = "";
         Iterator<Entry<Node, ArrayList<Edge>>> edgeI = edges.entrySet().iterator();
         while (edgeI.hasNext()) {
@@ -129,12 +137,21 @@ public class Graph {
      * @param n2
      * @param weight
      */
+    public void crossLinkNodes(Node n1, Node n2, int weight) {
+        linkNodes(n1, n2, weight);
+        linkNodes(n2, n1, weight);
+    }
+    
+    /**
+     * Links node n1 to node n2 with given weight
+     * @param n1
+     * @param n2
+     * @param weight 
+     */
     public void linkNodes(Node n1, Node n2, int weight) {
         notifyListeners();
-        Edge edgeFrom1to2 = new Edge(n2, weight);
-        edges.get(n1).add(edgeFrom1to2);
-        Edge edgeFrom2to1 = new Edge(n1, weight);
-        edges.get(n2).add(edgeFrom2to1);
+        Edge edgeTo2 = new Edge(n2, weight);
+        edges.get(n1).add(edgeTo2);
     }
 
     /**
@@ -156,8 +173,12 @@ public class Graph {
         edges.remove(n);
         nodes.remove(n);
     }
+    
     private ArrayList<GraphChangeListener> graphListeners = new ArrayList();
 
+    /**
+     * Notifies the registered GraphChangeListeners of changes
+     */
     protected void notifyListeners() {
         for (GraphChangeListener graphChangeListener : graphListeners) {
             graphChangeListener.graphChanged();

@@ -33,7 +33,7 @@ public class DijkstraListener implements MouseListener {
         if (dt.state == DijkstraTool.State.SET_S) {
             dt.setStartNode(pressedNode);
         } 
-        if (dt.state == DijkstraTool.State.SET_T) {
+        else if (dt.state == DijkstraTool.State.SET_T) {
             dt.setEndNode(pressedNode);
         }
     }

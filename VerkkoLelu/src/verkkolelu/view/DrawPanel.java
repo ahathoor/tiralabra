@@ -31,13 +31,7 @@ public class DrawPanel extends JPanel implements GraphChangeListener {
     }
 
     public void test() {
-        Node n1 = graph.addNode(new Point(300, 100));
-        Node n2 = graph.addNode(new Point(200, 400));
-        Node n3 = graph.addNode(new Point(140, 200));
-        graph.linkNodes(n1, n2, 10);
-        graph.linkNodes(n2, n3, 102);
-        graph.linkNodes(n1, n3, 132);
-        graph.loadFromString("0<nodeInternal>300<nodeInternal>100<node>1<nodeInternal>200<nodeInternal>400<node>2<nodeInternal>140<nodeInternal>200<node>3<nodeInternal>361<nodeInternal>176<node>4<nodeInternal>306<nodeInternal>322<node><graphInternal>0<edgeInternal>1<edgeInternal>10<edge>0<edgeInternal>2<edgeInternal>132<edge>0<edgeInternal>1<edgeInternal>10<edge>0<edgeInternal>2<edgeInternal>132<edge>0<edgeInternal>3<edgeInternal>1<edge>4<edgeInternal>3<edgeInternal>2<edge>4<edgeInternal>1<edgeInternal>9000<edge>1<edgeInternal>0<edgeInternal>10<edge>1<edgeInternal>2<edgeInternal>102<edge>1<edgeInternal>2<edgeInternal>102<edge>1<edgeInternal>0<edgeInternal>10<edge>1<edgeInternal>4<edgeInternal>9000<edge>3<edgeInternal>0<edgeInternal>1<edge>3<edgeInternal>4<edgeInternal>2<edge>2<edgeInternal>1<edgeInternal>102<edge>2<edgeInternal>1<edgeInternal>102<edge>2<edgeInternal>0<edgeInternal>132<edge>2<edgeInternal>0<edgeInternal>132<edge>");
+        
     }
 
     public void setGraph(Graph graph) {

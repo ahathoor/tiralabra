@@ -61,7 +61,7 @@ public class LinkTool implements MouseListener, Tool {
             labelSave = node1.getLabel();
             node1.setLabel("link");
         } else {
-            graph.linkNodes(node1, pressedNode, askWeight());
+            graph.crossLinkNodes(node1, pressedNode, askWeight());
             reset();
         }
     }

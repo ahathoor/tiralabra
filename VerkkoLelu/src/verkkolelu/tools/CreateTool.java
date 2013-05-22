@@ -57,6 +57,4 @@ public class CreateTool implements MouseListener, Tool {
         return "Create";
     }
     
-    
-    
 }

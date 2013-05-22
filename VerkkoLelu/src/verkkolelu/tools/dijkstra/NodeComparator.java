@@ -5,7 +5,7 @@
 package verkkolelu.tools.dijkstra;
 
 import java.util.Comparator;
-import java.util.HashMap;
+import verkkolelu.util.HashMap;
 import verkkolelu.model.Node;
 
 /**
