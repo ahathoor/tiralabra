@@ -27,6 +27,13 @@ public class MinHeap<T> {
                 return;
             }
         }
+        
+        comp = new Comparator<T>() {
+            @Override
+            public int compare(T o1, T o2) {
+                return ((Comparable) o1).compareTo(((Comparable) o2));
+            }
+        };
         throw new IllegalArgumentException("Class " + C.getCanonicalName() + " does not implement Comparable");
     }
 
@@ -81,6 +88,12 @@ public class MinHeap<T> {
     private boolean hasParent(int i) {
         return i > 1;
     }
+    private boolean hasLeft(int i) {
+        return left(i) <= size;
+    }
+    private boolean hasRight(int i) {
+        return right(i) <= size;
+    }
     
     private void swap(int i1, int i2) {
         T swap = elements[i1];
@@ -91,11 +104,34 @@ public class MinHeap<T> {
     private void resizeArray() {
         Arrays.copyOf(elements, elements.length * 2);
     }
+    
+    private int compare(int i1, int i2) {
+        return comp.compare(elements[i1],elements[i2]);
+    }
 
     private void shuffleUp() {
         int index = size;
-        while(hasParent(index)) {
+        while(hasParent(index) && compare(index, parent(index)) > 0) {
+            swap(index, parent(index));
+            index = parent(index);
+        }
+    }
+    
+    private void shuffleDown() {
+        int index = 1;
+        while (hasLeft(index)) {
+            int smaller = left(index);
             
+            if (hasRight(index) && compare(left(index), right(index)) > 0) {
+                smaller = right(index);
+            } 
+            
+            if (compare(index, smaller) > 0) {
+                swap(index, smaller);
+            } else {
+                break;
+            }
+            index = smaller;
         }
     }
     
