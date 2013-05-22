@@ -9,12 +9,31 @@ package verkkolelu.tools.dijkstra;
  * @author ahathoor
  */
 public enum DijkstraCommand {
+    
     /**
-     * Initialise the Dijkstra
+     * Initialize the Dijkstra
      */
-    INIT,
+    INIT("Initialize"),
     /**
      * Step the algorithm forward
      */
-    STEP
+    STEP("Step forward"),
+    /**
+     * Select the start node
+     */
+    SELECT_START("Select Startnode"),
+    /**
+     * Select the end node
+     */
+    SELECT_END("Select Endnode"),
+    /**
+     * Reset the algorithm
+     */
+    RESET("Reset");
+    
+    public final String NAME;
+
+    private DijkstraCommand(String name) {
+        this.NAME = name;
+    }
 }

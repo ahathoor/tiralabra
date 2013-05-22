@@ -5,9 +5,11 @@
 package verkkolelu.tools.dijkstra;
 
 import java.awt.Button;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
+import javax.swing.plaf.basic.BasicSplitPaneUI;
 
 /**
  *
@@ -32,15 +34,21 @@ public class DijkstraPanel extends JPanel{
         }
         
     }
+    
+    private void addButtonForCommand(DijkstraCommand dc) {
+        Button b = new Button(dc.NAME);
+        b.addActionListener(new DijkstraToolListener(dc, d));
+        add(b);
+    }
 
     public DijkstraPanel(DijkstraTool d) {
         this.d = d;
-        Button init = new Button("init");
-        init.addActionListener(new DijkstraToolListener(DijkstraCommand.INIT, d));
-        add(init);
-        Button step = new Button("step");
-        step.addActionListener(new DijkstraToolListener(DijkstraCommand.STEP, d));add(init);
-        add(step);
+        this.setLayout(new GridLayout(5, 1));
+        addButtonForCommand(DijkstraCommand.SELECT_START);
+        addButtonForCommand(DijkstraCommand.SELECT_END);
+        addButtonForCommand(DijkstraCommand.INIT);
+        addButtonForCommand(DijkstraCommand.STEP);
+        addButtonForCommand(DijkstraCommand.RESET);
     }
     
 }

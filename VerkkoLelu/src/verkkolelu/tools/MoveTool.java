@@ -6,14 +6,16 @@ package verkkolelu.tools;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import verkkolelu.model.Graph;
 import verkkolelu.model.Node;
+import verkkolelu.view.DrawPanel;
 
 /**
  *
  * @author ahathoor
  */
-public class MoveTool implements MouseListener, Tool {
+public class MoveTool implements MouseListener, Tool, MouseMotionListener {
 
     private Graph graph;
     Node selected;
@@ -28,21 +30,15 @@ public class MoveTool implements MouseListener, Tool {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (selected != null) {
-            selected.setPoint(e.getPoint());
-            selected.setLabel("");
-            selected = null;
-        } else {
-            Node nodeNearClick = graph.nodeNearPoint(e.getPoint());
-            if (nodeNearClick != null) {
-                selected = nodeNearClick;
-                nodeNearClick.setLabel("move");
-            }
+        Node nodeNearClick = graph.nodeNearPoint(e.getPoint());
+        if (nodeNearClick != null) {
+            selected = nodeNearClick;
         }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        selected = null;
     }
 
     @Override
@@ -54,11 +50,30 @@ public class MoveTool implements MouseListener, Tool {
     }
 
     @Override
-    public void select() {
-        System.out.println("Move tool selected");
+    public void select(DrawPanel p) {
+        p.addMouseListener(this);
+        p.addMouseMotionListener(this);
     }
 
     @Override
-    public void deselect() {
+    public void deselect(DrawPanel p) {
+        p.removeMouseListener(this);
+        p.removeMouseMotionListener(this);
+    }
+
+    @Override
+    public String getName() {
+        return "Move";
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        if (selected != null) {
+            selected.setPoint(e.getPoint());
+        }
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
     }
 }

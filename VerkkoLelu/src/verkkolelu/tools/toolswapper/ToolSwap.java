@@ -6,6 +6,7 @@ package verkkolelu.tools.toolswapper;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import verkkolelu.model.Graph;
 import verkkolelu.tools.CreateTool;
@@ -33,14 +34,13 @@ public class ToolSwap implements KeyListener {
     private void selectTool(Tool tool) {
         deselectCurrentTool();
         selectedTool = tool;
-        p.addMouseListener(tool);
-        tool.select();
+        tool.select(p);
+        System.out.println(tool.getName() + " tool selected");
     }
     
     private void deselectCurrentTool() {
         if (selectedTool != null) {
-            p.removeMouseListener(selectedTool);
-            selectedTool.deselect();
+            selectedTool.deselect(p);
         }
     }
     

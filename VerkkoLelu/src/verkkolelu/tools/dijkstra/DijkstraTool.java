@@ -4,6 +4,7 @@
  */
 package verkkolelu.tools.dijkstra;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
@@ -19,15 +20,30 @@ import verkkolelu.view.DrawPanel;
  *
  * @author ahathoor
  */
-public class DijkstraTool implements MouseListener, Tool {
+public class DijkstraTool implements Tool {
 
     private Graph graph;
-    Dijkstrawindow dw;
-    Node start;
-    Node end;
-    HashMap<Node, Integer> dist;
-    HashMap<Node, Node> previous;
-    PriorityQueue<Node> Q;
+    private DijkstraListener listener;
+    private Dijkstrawindow dw;
+    /**
+     * variables for the algorithm proper
+     */
+    private Node startNode;
+    private Node endNode;
+    private HashMap<Node, Integer> dist;
+    private HashMap<Node, Node> previous;
+    private PriorityQueue<Node> Q;
+
+    protected enum State {
+        SET_S, SET_T, INITIALIZED;
+    }
+
+    private void reset() {
+        startNode = null;
+        endNode = null;
+        state = State.SET_S;
+    }
+    protected State state = State.SET_S;
 
     public DijkstraTool(Graph i) {
         graph = i;
@@ -35,6 +51,7 @@ public class DijkstraTool implements MouseListener, Tool {
         previous = new HashMap<>();
         Q = new PriorityQueue<>(graph.nodeCount(), new NodeComparator(dist));
         dw = new Dijkstrawindow(this);
+        listener = new DijkstraListener(this);
     }
 
     /**
@@ -47,14 +64,14 @@ public class DijkstraTool implements MouseListener, Tool {
             previous.put(n, null);
             Q.add(n);
             n.setLabel("INF");
-            n.setSign(""+c);
+            n.setSign("" + c);
             c++;
         }
 
-        dist.put(start, 0);
-        Q.remove(start);
-        Q.add(start);
-        start.setLabel("0");
+        dist.put(startNode, 0);
+        Q.remove(startNode);
+        Q.add(startNode);
+        startNode.setLabel("0");
     }
 
     /**
@@ -84,71 +101,59 @@ public class DijkstraTool implements MouseListener, Tool {
         }
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    public void reset() {
-        if (start != null) {
-            start.setLabel("");
-        }
-        if (end != null) {
-            end.setLabel("");
-        }
-        start = null;
-        end = null;
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        Node pressedN = graph.nodeNearPoint(e.getPoint());
-        if (pressedN == null) {
-            return;
-        }
-        if (e.getButton() == MouseEvent.BUTTON1) {
-            if (start == null) {
-                start = pressedN;
-                start.setLabel("Start");
-            } else if (end == null) {
-                end = pressedN;
-                end.setLabel("End");
-            } else {
-            }
-        } else {
-            init();
-        }
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-    }
-
-    @Override
-    public void select() {
-        System.out.println("Dijkstra tool selected");
-        dw.open();
-    }
-
-    @Override
-    public void deselect() {
-        reset();
-        dw.close();
-    }
-
     void command(DijkstraCommand command) {
+        if (command == DijkstraCommand.SELECT_START) {
+            state = State.SET_S;
+        }
+        if (command == DijkstraCommand.SELECT_END) {
+            state = State.SET_T;
+        }
         if (command == DijkstraCommand.INIT) {
             init();
         }
         if (command == DijkstraCommand.STEP) {
             step();
         }
+        if (command == DijkstraCommand.RESET) {
+            reset();
+        }
+    }
+
+    protected Node getStartNode() {
+        return startNode;
+    }
+
+    protected Node getEndNode() {
+        return endNode;
+    }
+
+    protected Graph getGraph() {
+        return graph;
+    }
+
+    public void setStartNode(Node startNode) {
+        this.startNode = startNode;
+    }
+
+    public void setEndNode(Node endNode) {
+        this.endNode = endNode;
+    }
+
+    @Override
+    public void select(DrawPanel p) {
+        reset();
+        p.addMouseListener(listener);
+        dw.open();
+    }
+
+    @Override
+    public void deselect(DrawPanel p) {
+        p.removeMouseListener(listener);
+        dw.close();
+    }
+
+    @Override
+    public String getName() {
+        return "Dijkstra";
     }
 }

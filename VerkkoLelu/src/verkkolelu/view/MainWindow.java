@@ -10,11 +10,11 @@ import javax.swing.JFrame;
  *
  * @author ahathoor
  */
-public class Ikkuna extends JFrame {
+public class MainWindow extends JFrame {
 
     DrawPanel p;
     
-    public Ikkuna() {
+    public MainWindow() {
         super("VerkkoLelu");
         p = new DrawPanel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -5,12 +5,14 @@
 package verkkolelu.tools;
 
 import java.awt.event.MouseListener;
+import verkkolelu.view.DrawPanel;
 
 /**
  * Interface for the tools for the VerkkoLelu program
  * @author Mikko Tamminen
  */
-public interface Tool extends MouseListener {
-    public void select();
-    public void deselect();
+public interface Tool{
+    public String getName();
+    public void select(DrawPanel p);
+    public void deselect(DrawPanel p);
 }

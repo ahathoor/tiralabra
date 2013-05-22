@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import verkkolelu.model.Graph;
 import verkkolelu.model.Node;
+import verkkolelu.view.DrawPanel;
 
 /**
  *
@@ -46,11 +47,17 @@ public class DeleteTool implements MouseListener, Tool {
     }
 
     @Override
-    public void select() {
-        System.out.println("Delete tool selected");
+    public void select(DrawPanel p) {
+        p.addMouseListener(this);
     }
 
     @Override
-    public void deselect() {
+    public void deselect(DrawPanel p) {
+        p.removeMouseListener(this);
+    }
+
+    @Override
+    public String getName() {
+        return "Delete";
     }
 }

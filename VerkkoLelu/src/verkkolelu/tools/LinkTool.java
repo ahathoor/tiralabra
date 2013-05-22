@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import verkkolelu.model.Graph;
 import verkkolelu.model.Node;
+import verkkolelu.view.DrawPanel;
 
 /**
  *
@@ -17,11 +18,12 @@ import verkkolelu.model.Node;
 public class LinkTool implements MouseListener, Tool {
 
     private Graph graph;
-    Node node1;
-
+    private Node node1;
+    private String labelSave;
+    
     public LinkTool(Graph graph) {
         this.graph = graph;
-        reset();
+        labelSave = "";
     }
 
     @Override
@@ -30,7 +32,7 @@ public class LinkTool implements MouseListener, Tool {
 
     private void reset() {
         if (node1 != null) {
-            node1.setLabel("");
+            node1.setLabel(labelSave);
             node1 = null;
         }
     }
@@ -56,6 +58,7 @@ public class LinkTool implements MouseListener, Tool {
         }
         if (node1 == null) {
             node1 = pressedNode;
+            labelSave = node1.getLabel();
             node1.setLabel("link");
         } else {
             graph.linkNodes(node1, pressedNode, askWeight());
@@ -76,11 +79,18 @@ public class LinkTool implements MouseListener, Tool {
     }
 
     @Override
-    public void select() {
-        System.out.println("Link tool selected");
+    public void select(DrawPanel p) {
+        p.addMouseListener(this);
+        reset();
     }
 
     @Override
-    public void deselect() {
+    public void deselect(DrawPanel p) {
+        p.removeMouseListener(this);
+    }
+    
+    @Override
+    public String getName() {
+        return "Link";
     }
 }

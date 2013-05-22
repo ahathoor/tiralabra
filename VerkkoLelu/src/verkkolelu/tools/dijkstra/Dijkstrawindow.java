@@ -20,17 +20,16 @@ public class Dijkstrawindow extends JFrame {
         setFocusableWindowState(false);
         this.d = d;
         DijkstraPanel p = new DijkstraPanel(d);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         add(p);
         pack();
+        setSize(200,200);
         setVisible(true);
         setFocusableWindowState(true);
     }
 
     public void close() {
         setVisible(false);
-//        WindowEvent wev = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-//        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(wev);
     }
 
     void open() {

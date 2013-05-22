@@ -7,6 +7,7 @@ package verkkolelu.tools;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import verkkolelu.model.Graph;
+import verkkolelu.view.DrawPanel;
 
 /**
  *
@@ -42,11 +43,20 @@ public class CreateTool implements MouseListener, Tool {
     }
 
     @Override
-    public void select() {
-        System.out.println("Create tool selected");
+    public void select(DrawPanel p) {
+        p.addMouseListener(this);
     }
 
     @Override
-    public void deselect() {
+    public void deselect(DrawPanel p) {
+        p.removeMouseListener(this);
     }
+
+    @Override
+    public String getName() {
+        return "Create";
+    }
+    
+    
+    
 }
