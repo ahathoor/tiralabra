@@ -1,4 +1,4 @@
-tiralabra
+Verkkolelu
 =========
 
-Alkukesän tiralabra repo
+Graafinen käyttöliittymä verkkoalgoritmien tutkimiseen.
