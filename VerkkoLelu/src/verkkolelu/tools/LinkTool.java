@@ -40,6 +40,12 @@ public class LinkTool implements MouseListener, Tool {
     private int askWeight() {
         while (true) {
             String weightS = JOptionPane.showInputDialog("Insert weight");
+            if (weightS == null) {
+                return -1;
+            }
+            if (weightS.equals("")) {
+                return 1;
+            }
             try {
                 int weight = Integer.parseInt(weightS);
                 return weight;
@@ -61,7 +67,10 @@ public class LinkTool implements MouseListener, Tool {
             labelSave = node1.getLabel();
             node1.setLabel("link");
         } else {
-            graph.crossLinkNodes(node1, pressedNode, askWeight());
+            int weight = askWeight();
+            if (weight == -1)
+                return;
+            graph.crossLinkNodes(node1, pressedNode, weight);
             reset();
         }
     }
