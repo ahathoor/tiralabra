@@ -61,9 +61,7 @@ public class Menu implements KeyListener {
     private void loadDialog() {
         String saveString = JOptionPane.showInputDialog("Paste the save string here");
         try {
-            Graph loadedGraph = new Graph();
-            loadedGraph.loadFromString(saveString);
-            p.setGraph(loadedGraph);
+            p.getGraph().loadFromString(saveString);
         } catch (NumberFormatException ex) {
             System.out.println("Loading of the input string caused an error: " + ex.getLocalizedMessage());
         } catch (NullPointerException npe) {
