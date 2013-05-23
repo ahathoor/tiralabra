@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package verkkolelu.util;
+package unused;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -58,8 +58,13 @@ public class MinHeap<T> {
     }
 
     public void remove(T element) {
+        size--;
     }
 
+    /**
+     * Returns and removes the smallest element.
+     * @return 
+     */
     public T pop() {
         if (size <= 0) {
             throw new IllegalStateException("Heap is empty");
@@ -67,6 +72,8 @@ public class MinHeap<T> {
         T ret = elements[1];
         elements[1] = elements[size];
         size--;
+        
+        shuffleDown();
 
         return ret;
     }
@@ -138,4 +145,13 @@ public class MinHeap<T> {
             index = smaller;
         }
     }
+    
+    /**
+     * Returns the array of objects stored in the heap, in order.
+     * @return 
+     */
+    public T[] toArray() {
+        return elements;
+    }
+    
 }

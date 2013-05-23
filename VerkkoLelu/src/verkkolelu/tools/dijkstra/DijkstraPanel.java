@@ -43,9 +43,8 @@ public class DijkstraPanel extends JPanel{
 
     public DijkstraPanel(DijkstraTool d) {
         this.d = d;
-        this.setLayout(new GridLayout(5, 1));
+        this.setLayout(new GridLayout(DijkstraCommand.values().length, 1));
         addButtonForCommand(DijkstraCommand.SELECT_START);
-        addButtonForCommand(DijkstraCommand.SELECT_END);
         addButtonForCommand(DijkstraCommand.INIT);
         addButtonForCommand(DijkstraCommand.STEP);
         addButtonForCommand(DijkstraCommand.RESET);

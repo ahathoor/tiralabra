@@ -23,7 +23,7 @@ public class Edge {
     public Edge(Node node2, int weight) {
         this.node2 = node2;
         this.weight = weight;
-        this.color = Color.red;
+        this.color = new Color(0xFFC14D);
     }
 
     public void setColor(Color color) {
@@ -33,8 +33,6 @@ public class Edge {
     public Color getColor() {
         return color;
     }
-    
-    
 
     public Node getNode2() {
         return node2;

@@ -6,6 +6,7 @@ package verkkolelu.tools;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JOptionPane;
 import verkkolelu.model.Graph;
 import verkkolelu.view.DrawPanel;
 
@@ -27,7 +28,11 @@ public class CreateTool implements MouseListener, Tool {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        graph.addNode(e.getPoint());
+        String sign = JOptionPane.showInputDialog("put sign");
+        if (sign == null) {
+            return;
+        }
+        graph.addNode(e.getPoint()).setSign(sign);
     }
 
     @Override
@@ -56,5 +61,4 @@ public class CreateTool implements MouseListener, Tool {
     public String getName() {
         return "Create";
     }
-    
 }

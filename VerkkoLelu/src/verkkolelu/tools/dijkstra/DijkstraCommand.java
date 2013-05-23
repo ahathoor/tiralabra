@@ -23,10 +23,6 @@ public enum DijkstraCommand {
      */
     SELECT_START("Select Startnode"),
     /**
-     * Select the end node
-     */
-    SELECT_END("Select Endnode"),
-    /**
      * Reset the algorithm
      */
     RESET("Reset");

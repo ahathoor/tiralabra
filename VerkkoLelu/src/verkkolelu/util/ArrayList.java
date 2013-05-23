@@ -6,13 +6,61 @@ package verkkolelu.util;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import verkkolelu.model.Node;
 
 /**
  *
  * @author ahathoor
  */
-public class ArrayList<T0> {
+public class ArrayList<T0> implements Iterable<T0> {
 
+    @Override
+    public Iterator<T0> iterator() {
+        return new ArrayListIterator();
+    }
+
+    public T0[] toArray(T0[] array) {
+        for (int i = 0; i < array.length && i < elements.length; i++) {
+            array[i] = elements[i];
+        }
+        return array;
+    }
+
+    public int indexOf(T0 searched) {
+        for (int i = 0; i < elements.length; i++) {
+            if (elements[i] == searched) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private class ArrayListIterator implements Iterator<T0> {
+
+        private int cursor;
+
+        public ArrayListIterator() {
+            this.cursor = 0;
+        }
+        
+        @Override
+        public boolean hasNext() {
+            return this.cursor != ArrayList.this.count;
+        }
+
+        @Override
+        public T0 next() {
+            T0 ret = ArrayList.this.elements[cursor];
+            cursor++;
+            return ret;
+        }
+
+        @Override
+        public void remove() {
+            ArrayList.this.removeIndex(cursor);
+        }
+        
+    }
     private T0[] elements;
     private int size;
     private int count;

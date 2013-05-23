@@ -4,8 +4,9 @@
  */
 package verkkolelu.model;
 
+import java.awt.Color;
 import java.awt.Point;
-import java.util.ArrayList;
+import verkkolelu.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -23,11 +24,14 @@ public class Graph {
         empty();
     }
 
+    /**
+     * Empties the graph
+     */
     public void empty() {
         nodes = new ArrayList<>();
         edges = new HashMap<>();
+        notifyListeners();
     }
-
     /**
      * Generates a string from the graph that can be used to load the graph
      *
@@ -42,7 +46,9 @@ public class Graph {
             Node node = nodes.get(i);
             nodesave += i + "<nodeInternal>" 
                     + node.getPoint().x + "<nodeInternal>" 
-                    + node.getPoint().y + "<node>";
+                    + node.getPoint().y + "<nodeInternal>" 
+                    + node.getSign() + "<nodeInternal>" 
+                    + node.getColor().getRGB() + "<node>";
         }
         /**
          * Save the edges
@@ -70,15 +76,27 @@ public class Graph {
      */
     public void loadFromString(String save) {
         empty();
+        if (save.split("<graphInternal>").length == 0) {
+            //Graph has no nodes
+            return;
+        }
         String nodesave = save.split("<graphInternal>")[0];
         String[] nodeStrings = nodesave.split("<node>");
         for (String nodeString : nodeStrings) {
             int index = Integer.parseInt(nodeString.split("<nodeInternal>")[0]);
             int x = Integer.parseInt(nodeString.split("<nodeInternal>")[1]);
             int y = Integer.parseInt(nodeString.split("<nodeInternal>")[2]);
-            addNode(new Point(x, y));
+            String sign = nodeString.split("<nodeInternal>")[3];
+            int rgb = Integer.parseInt(nodeString.split("<nodeInternal>")[4]);
+            Node added = addNode(new Point(x, y));
+            added.setSign(sign);
+            added.setColor(new Color(rgb));
         }
 
+        if (save.split("<graphInternal>").length == 1) {
+            //Graph has no edges
+            return;
+        }
         String edgeSave = save.split("<graphInternal>")[1];
         String[] edgeStrings = edgeSave.split("<edge>");
         for (String edgeString : edgeStrings) {
@@ -120,7 +138,7 @@ public class Graph {
      * Adds a new Node at the given point
      *
      * @param point
-     * @return
+     * @return the created node
      */
     public Node addNode(Point point) {
         notifyListeners();

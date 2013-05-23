@@ -29,18 +29,19 @@ public class Node {
     public Node(Point point, Graph graph) {
         label = "";
         sign = "";
-        color = Color.black;
+        color = Color.lightGray;
         this.point = point;
         this.graph = graph;
     }
 
     public void setPoint(Point point) {
-        graph.notifyListeners();
         this.point = point;
+        graph.notifyListeners();
     }
     
     public void setSign(String sign) {
         this.sign = sign;
+        graph.notifyListeners();
     }
 
     public String getSign() {
@@ -60,12 +61,12 @@ public class Node {
     }
 
     public void setColor(Color color) {
-        graph.notifyListeners();
         this.color = color;
+        graph.notifyListeners();
     }
 
     public void setLabel(String label) {
-        graph.notifyListeners();
         this.label = label;
+        graph.notifyListeners();
     }
 }
