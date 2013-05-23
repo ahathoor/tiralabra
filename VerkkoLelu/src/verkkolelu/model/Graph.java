@@ -114,9 +114,9 @@ public class Graph {
     public ArrayList<Node> getNodes() {
         return nodes;
     }
-
-    public HashMap<Node, ArrayList<Edge>> getEdges() {
-        return edges;
+    
+    public ArrayList<Edge> getEdgesFrom(Node node) {
+        return edges.get(node);
     }
 
     /**

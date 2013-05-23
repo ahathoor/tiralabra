@@ -71,6 +71,10 @@ public class Menu implements KeyListener {
         }
     }
 
+    void openWindow() {
+        MenuWindow mw = new MenuWindow(this);
+    }
+
     protected enum MenuCommand {
 
         CREATE("Create", 'c'),
@@ -108,7 +112,7 @@ public class Menu implements KeyListener {
     public Menu(DrawPanel p) {
         this.p = p;
         selectTool(new CreateTool(p.getGraph()));
-        MenuWindow mw = new MenuWindow(this);
+        openWindow();
         dijkstraTool = new DijkstraTool(p.getGraph());
     }
 

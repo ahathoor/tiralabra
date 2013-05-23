@@ -97,7 +97,7 @@ public class StepThread extends Thread {
                 System.out.println("Rest of the nodes unreachable.");
                 break;
             }
-            for (Edge edge : graph.getEdges().get(popped)) {
+            for (Edge edge : graph.getEdgesFrom(popped)) {
                 pause();
 
                 Node neighbour = edge.getNode2();

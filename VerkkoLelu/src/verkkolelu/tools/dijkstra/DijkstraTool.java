@@ -18,36 +18,38 @@ import verkkolelu.view.DrawPanel;
  * @author ahathoor
  */
 public class DijkstraTool implements Tool {
-   protected enum State {
+
+    protected enum State {
+
         SET_S, INITIALIZED, FINISHED;
     }
-   
     private Graph graph;
     private DijkstraListener listener;
     private Dijkstrawindow dw;
     private Node startNode;
     StepThread stepThread;
-
- 
-    
     protected State state;
+    private String graphSave;
+    private ArrayList<String> signSave;
 
     public DijkstraTool(Graph i) {
         graph = i;
         dw = new Dijkstrawindow(this);
         listener = new DijkstraListener(this);
+        signSave = new ArrayList<>();
     }
 
+    /**
+     * Resets the tool.
+     */
     private void reset() {
         loadGraph();
         startNode = null;
         state = State.SET_S;
     }
 
- 
-
     /**
-     * Initializes the Dijkstra algorithm
+     * Initializes the Dijkstra algorithm.
      */
     private void init() {
         if (startNode == null) {
@@ -61,7 +63,7 @@ public class DijkstraTool implements Tool {
     }
 
     /**
-     * Steps the algorithm forward
+     * Steps the algorithm forward.
      */
     private void step() {
         if (state != State.INITIALIZED) {
@@ -78,6 +80,7 @@ public class DijkstraTool implements Tool {
 
     /**
      * Processes a input DijkstraCommand and executes them.
+     *
      * @param command input command
      */
     void command(DijkstraCommand command) {
@@ -114,8 +117,6 @@ public class DijkstraTool implements Tool {
             startNode.setSign("Start");
         }
     }
-    
-    private ArrayList<String> signSave = new ArrayList<>();
 
     private void saveSigns() {
         Node[] nodes = graph.getNodes().toArray(new Node[graph.getNodes().size()]);
@@ -130,7 +131,6 @@ public class DijkstraTool implements Tool {
             nodes[i].setSign(signSave.get(i));
         }
     }
-    private String graphSave;
 
     private void saveGraph() {
         graphSave = graph.saveToString();
