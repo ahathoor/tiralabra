@@ -4,8 +4,7 @@
  */
 package verkkolelu.tools;
 
-import java.awt.event.MouseListener;
-import verkkolelu.view.DrawPanel;
+import verkkolelu.view.MainFrame;
 
 /**
  * Interface for the tools for the VerkkoLelu program
@@ -13,6 +12,6 @@ import verkkolelu.view.DrawPanel;
  */
 public interface Tool{
     public String getName();
-    public void select(DrawPanel p);
-    public void deselect(DrawPanel p);
+    public void select(MainFrame mf);
+    public void deselect(MainFrame mf);
 }

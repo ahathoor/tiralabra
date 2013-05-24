@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import verkkolelu.tools.menu.Menu.MenuCommand;
 
 /**
- *
+ * Used to display Menu.
  * @author mikko
  */
 public class MenuPanel extends JPanel {
@@ -27,6 +27,10 @@ public class MenuPanel extends JPanel {
         }
     }
 
+    /**
+     * Adds buttons for all available MenuCommands.
+     * @param menucommand 
+     */
     private void addButtonForCommand(MenuCommand menucommand) {
         String hotkeyString = "";
         if (menucommand.getHotkey() != null) {
@@ -38,6 +42,9 @@ public class MenuPanel extends JPanel {
         add(b);
     }
 
+    /**
+     * Listener for a menu button.
+     */
     private class MenuButtonListener implements ActionListener {
 
         MenuCommand command;

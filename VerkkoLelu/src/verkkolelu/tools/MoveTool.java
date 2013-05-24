@@ -9,7 +9,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import verkkolelu.model.Graph;
 import verkkolelu.model.Node;
-import verkkolelu.view.DrawPanel;
+import verkkolelu.view.MainFrame;
 
 /**
  *
@@ -50,15 +50,15 @@ public class MoveTool implements MouseListener, Tool, MouseMotionListener {
     }
 
     @Override
-    public void select(DrawPanel p) {
-        p.addMouseListener(this);
-        p.addMouseMotionListener(this);
+    public void select(MainFrame mf) {
+        mf.addMouseListener(this);
+        mf.addMouseMotionListener(this);
     }
 
     @Override
-    public void deselect(DrawPanel p) {
-        p.removeMouseListener(this);
-        p.removeMouseMotionListener(this);
+    public void deselect(MainFrame mf) {
+        mf.removeMouseListener(this);
+        mf.removeMouseMotionListener(this);
     }
 
     @Override

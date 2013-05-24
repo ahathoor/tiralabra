@@ -4,7 +4,7 @@
  */
 package verkkolelu;
 
-import verkkolelu.view.MainWindow;
+import verkkolelu.view.MainFrame;
 
 /**
  *
@@ -16,6 +16,6 @@ public class VerkkoLelu {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        MainWindow i = new MainWindow();
+        MainFrame i = new MainFrame();
     }
 }

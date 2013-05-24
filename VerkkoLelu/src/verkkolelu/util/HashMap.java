@@ -5,7 +5,7 @@
 package verkkolelu.util;
 
 /**
- *
+ * A hashmap.
  * @author ahathoor
  */
 public class HashMap<T0, T1> {
@@ -36,6 +36,7 @@ public class HashMap<T0, T1> {
             this.value = value;
         }
     }
+    
     ArrayList<Entry<T0, T1>>[] values;
     double LOADFACTOR = 0.7;
     double EXPANSION_F = 2;
@@ -50,12 +51,18 @@ public class HashMap<T0, T1> {
         fillWithLists();
     }
 
+    /**
+     * Creates empty lists for all slots in the map
+     */
     private void fillWithLists() {
         for (int i = 0; i < values.length; i++) {
             values[i] = new ArrayList<>();
         }
     }
 
+    /**
+     * Expands the map to fit more values.
+     */
     private void expand() {
         tableSize *= EXPANSION_F;
         ArrayList<Entry<T0, T1>>[] oldValues = values;
@@ -73,17 +80,11 @@ public class HashMap<T0, T1> {
         }
     }
 
-//    private boolean containsKey(T0 key) {
-//        int hash = hash(key);
-//        for (int i = 0; i < values[hash].size(); i++) {
-//            Entry<T0, T1> entry = values[hash].get(i);
-//            if (entry.key == key) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
+    /**
+     * Puts a new value to the map. O(1) time complexity.
+     * @param key
+     * @param value 
+     */
     public void put(T0 key, T1 value) {
         int hash = hash(key);
         
@@ -95,10 +96,19 @@ public class HashMap<T0, T1> {
         }
     }
 
+    /**
+     * Hash value used for the map.
+     * @param key
+     * @return 
+     */
     private int hash(T0 key) {
         return key.hashCode() % tableSize;
     }
 
+    /**
+     * Removes the entry for the given key. O(1) time.
+     * @param keyToRemove 
+     */
     public void remove(T0 keyToRemove) {
         int hash = hash(keyToRemove);
         ArrayList<Entry<T0, T1>> entriesForKey = values[hash];
@@ -110,6 +120,11 @@ public class HashMap<T0, T1> {
         }
     }
 
+    /**
+     * Returns the entry for the given key.
+     * @param key
+     * @return Value for key, null if not found.
+     */
     public T1 get(T0 key) {
         int hash = hash(key);
         for (int i = 0; i < values[hash].size(); i++) {

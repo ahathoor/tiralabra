@@ -4,14 +4,11 @@
  */
 package verkkolelu.tools.dijkstra;
 
-import java.awt.Color;
 import verkkolelu.util.ArrayList;
-import verkkolelu.util.HashMap;
-import verkkolelu.model.Edge;
 import verkkolelu.model.Graph;
 import verkkolelu.model.Node;
 import verkkolelu.tools.Tool;
-import verkkolelu.view.DrawPanel;
+import verkkolelu.view.MainFrame;
 
 /**
  *
@@ -34,7 +31,6 @@ public class DijkstraTool implements Tool {
 
     public DijkstraTool(Graph i) {
         graph = i;
-        dw = new Dijkstrawindow(this);
         listener = new DijkstraListener(this);
         signSave = new ArrayList<>();
     }
@@ -141,18 +137,21 @@ public class DijkstraTool implements Tool {
     }
 
     @Override
-    public void select(DrawPanel p) {
+    public void select(MainFrame mf) {
+        if (dw == null) {
+            dw = new Dijkstrawindow(this, mf);
+        }
         saveGraph();
         saveSigns();
         reset();
-        p.addMouseListener(listener);
+        mf.addMouseListener(listener);
         dw.open();
     }
 
     @Override
-    public void deselect(DrawPanel p) {
+    public void deselect(MainFrame mf) {
         loadSigns();
-        p.removeMouseListener(listener);
+        mf.removeMouseListener(listener);
         dw.close();
         loadGraph();
     }

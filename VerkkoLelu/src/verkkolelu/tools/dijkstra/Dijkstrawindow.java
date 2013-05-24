@@ -5,18 +5,21 @@
 package verkkolelu.tools.dijkstra;
 
 import java.awt.HeadlessException;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import verkkolelu.view.MainFrame;
 
 /**
  *
  * @author ahathoor
  */
-public class Dijkstrawindow extends JFrame {
+public class Dijkstrawindow extends JDialog {
 
     private DijkstraTool d;
 
-    public Dijkstrawindow(DijkstraTool d) throws HeadlessException {
-        super("DijkstraTool");
+    public Dijkstrawindow(DijkstraTool d, MainFrame mf) throws HeadlessException {
+        super(mf, "DijkstraTool");
+        mf.addDialog(this);
         setFocusableWindowState(false);
         this.d = d;
         DijkstraPanel p = new DijkstraPanel(d);

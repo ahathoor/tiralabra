@@ -17,6 +17,7 @@ import verkkolelu.tools.MoveTool;
 import verkkolelu.tools.Tool;
 import verkkolelu.tools.dijkstra.DijkstraTool;
 import verkkolelu.view.DrawPanel;
+import verkkolelu.view.MainFrame;
 
 /**
  *
@@ -28,27 +29,27 @@ public class Menu implements KeyListener {
 
     void command(MenuCommand command) {
         if (command == MenuCommand.CREATE) {
-            selectTool(new CreateTool(p.getGraph()));
+            selectTool(new CreateTool(graph));
         }
         if (command == MenuCommand.LINK) {
-            selectTool(new LinkTool(p.getGraph()));
+            selectTool(new LinkTool(graph));
         }
         if (command == MenuCommand.MOVE) {
-            selectTool(new MoveTool(p.getGraph()));
+            selectTool(new MoveTool(graph));
         }
         if (command == MenuCommand.DELETE) {
-            selectTool(new DeleteTool(p.getGraph()));
+            selectTool(new DeleteTool(graph));
         }
         if (command == MenuCommand.SAVE) {
-            System.out.println(p.getGraph().saveToString());
+            System.out.println(graph.saveToString());
         }
         if (command == MenuCommand.LOAD) {
-            selectTool(new CreateTool(p.getGraph()));
+            selectTool(new CreateTool(graph));
             loadDialog();
         }
         if (command == MenuCommand.CLEAR) {
-            selectTool(new CreateTool(p.getGraph()));
-            p.getGraph().empty();
+            selectTool(new CreateTool(graph));
+            graph.empty();
         }
         if (command == MenuCommand.DIJKSTRA) {
             selectTool(dijkstraTool);
@@ -61,16 +62,12 @@ public class Menu implements KeyListener {
     private void loadDialog() {
         String saveString = JOptionPane.showInputDialog("Paste the save string here");
         try {
-            p.getGraph().loadFromString(saveString);
+            graph.loadFromString(saveString);
         } catch (NumberFormatException ex) {
             System.out.println("Loading of the input string caused an error: " + ex.getLocalizedMessage());
         } catch (NullPointerException npe) {
             //cancel
         }
-    }
-
-    void openWindow() {
-        MenuWindow mw = new MenuWindow(this);
     }
 
     protected enum MenuCommand {
@@ -104,26 +101,28 @@ public class Menu implements KeyListener {
             return hotkey;
         }
     }
-    private DrawPanel p;
+    private Graph graph;
+    private MainFrame mainFrame;
     private Tool selectedTool;
 
-    public Menu(DrawPanel p) {
-        this.p = p;
-        selectTool(new CreateTool(p.getGraph()));
-        openWindow();
-        dijkstraTool = new DijkstraTool(p.getGraph());
+    public Menu(Graph graph, MainFrame mainFrame) {
+        this.graph = graph;
+        this.mainFrame = mainFrame;
+        selectTool(new CreateTool(graph));
+        MenuWindow mw = new MenuWindow(this, mainFrame);
+        dijkstraTool = new DijkstraTool(graph);
     }
 
     private void selectTool(Tool tool) {
         deselectCurrentTool();
         selectedTool = tool;
-        tool.select(p);
+        tool.select(mainFrame);
         System.out.println(tool.getName() + " tool selected");
     }
 
     private void deselectCurrentTool() {
         if (selectedTool != null) {
-            selectedTool.deselect(p);
+            selectedTool.deselect(mainFrame);
         }
     }
 
