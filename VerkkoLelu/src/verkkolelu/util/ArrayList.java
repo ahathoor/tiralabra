@@ -4,9 +4,7 @@
  */
 package verkkolelu.util;
 
-import java.util.Arrays;
 import java.util.Iterator;
-import verkkolelu.model.Node;
 
 /**
  *
@@ -19,6 +17,12 @@ public class ArrayList<T0> implements Iterable<T0> {
         return new ArrayListIterator();
     }
 
+    /**
+     * Copies the elements to the given array and returns the array.
+     *
+     * @param array
+     * @return
+     */
     public T0[] toArray(T0[] array) {
         for (int i = 0; i < array.length && i < elements.length; i++) {
             array[i] = elements[i];
@@ -26,6 +30,12 @@ public class ArrayList<T0> implements Iterable<T0> {
         return array;
     }
 
+    /**
+     * Returns the index of the given node.
+     *
+     * @param searched the node whose index is to be returned.
+     * @return The index of the given node. -1 if not found.
+     */
     public int indexOf(T0 searched) {
         for (int i = 0; i < elements.length; i++) {
             if (elements[i] == searched) {
@@ -35,6 +45,9 @@ public class ArrayList<T0> implements Iterable<T0> {
         return -1;
     }
 
+    /**
+     * Iterator for the Array List.
+     */
     private class ArrayListIterator implements Iterator<T0> {
 
         private int cursor;
@@ -42,7 +55,7 @@ public class ArrayList<T0> implements Iterable<T0> {
         public ArrayListIterator() {
             this.cursor = 0;
         }
-        
+
         @Override
         public boolean hasNext() {
             return this.cursor != ArrayList.this.count;
@@ -59,7 +72,6 @@ public class ArrayList<T0> implements Iterable<T0> {
         public void remove() {
             ArrayList.this.removeIndex(cursor);
         }
-        
     }
     private T0[] elements;
     private int size;
@@ -71,10 +83,20 @@ public class ArrayList<T0> implements Iterable<T0> {
         elements = (T0[]) new Object[size];
     }
 
+    /**
+     * returns the number of elements in this list.
+     *
+     * @return
+     */
     public int size() {
         return count;
     }
 
+    /**
+     * Adds an element to the list.
+     *
+     * @param element
+     */
     public void add(T0 element) {
         if (count + 1 > size) {
             T0[] ecopy = (T0[]) new Object[size * 2];
@@ -86,14 +108,30 @@ public class ArrayList<T0> implements Iterable<T0> {
         count++;
     }
 
+    /**
+     * Returns the element with the given index.
+     *
+     * @param index
+     * @return
+     */
     public T0 get(int index) {
         return elements[index];
     }
 
+    /**
+     * Returns true if there are zero elements.
+     *
+     * @return
+     */
     public boolean isEmpty() {
         return count == 0;
     }
 
+    /**
+     * Removes the element at the given index from the list.
+     *
+     * @param index
+     */
     public void removeIndex(int index) {
         if (index >= elements.length) {
             throw new IndexOutOfBoundsException();
@@ -104,7 +142,11 @@ public class ArrayList<T0> implements Iterable<T0> {
         count--;
     }
 
-
+    /**
+     * Removes the given element from the list.
+     *
+     * @param element
+     */
     public void remove(T0 element) {
         for (int i = 0; i < elements.length; i++) {
             if (elements[i] != null && elements[i].equals(element)) {

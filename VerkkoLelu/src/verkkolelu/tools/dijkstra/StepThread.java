@@ -83,6 +83,9 @@ public class StepThread extends Thread {
         return isDone;
     }
 
+    /**
+     * Runs the algorithm, pausing every step of the way.
+     */
     @Override
     public void run() {
         pause();

@@ -19,6 +19,10 @@ public class MenuPanel extends JPanel {
 
     private Menu m;
 
+    /**
+     * Creates a new panel that has buttons for every available MenuCommand.
+     * @param m 
+     */
     MenuPanel(Menu m) {
         this.m = m;
         this.setLayout(new GridLayout(MenuCommand.values().length, 1));
@@ -28,7 +32,7 @@ public class MenuPanel extends JPanel {
     }
 
     /**
-     * Adds buttons for all available MenuCommands.
+     * Adds a button for a MenuCommand
      * @param menucommand 
      */
     private void addButtonForCommand(MenuCommand menucommand) {

@@ -28,7 +28,11 @@ public class Menu implements KeyListener {
     DijkstraTool dijkstraTool;
     MenuWindow mw;
 
-    void command(MenuCommand command) {
+    /**
+     * Takes in and executes given MenuCommands.
+     * @param command 
+     */
+    protected void command(MenuCommand command) {
         if (command == MenuCommand.CREATE) {
             selectTool(new CreateTool(graph));
         }
@@ -60,6 +64,10 @@ public class Menu implements KeyListener {
         }
     }
 
+    /**
+     * Opens a dialog that takes in a string. If that string can be used to 
+     * load a graph, then it is loaded.
+     */
     private void loadDialog() {
         String saveString = JOptionPane.showInputDialog("Paste the save string here");
         try {
@@ -75,6 +83,9 @@ public class Menu implements KeyListener {
         mw = new MenuWindow(this, mainFrame);
     }
 
+    /**
+     * Possible commands for the menu.
+     */
     protected enum MenuCommand {
 
         CREATE("Create", 'c'),
@@ -118,12 +129,19 @@ public class Menu implements KeyListener {
         dijkstraTool = new DijkstraTool(graph);
     }
 
+    /**
+     * Selects a given tool
+     * @param tool 
+     */
     private void selectTool(Tool tool) {
         deselectCurrentTool();
         selectedTool = tool;
         tool.select(mainFrame);
     }
 
+    /**
+     * Deselects the current tool.
+     */
     private void deselectCurrentTool() {
         if (selectedTool != null) {
             selectedTool.deselect(mainFrame);

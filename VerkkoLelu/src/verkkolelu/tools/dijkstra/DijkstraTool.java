@@ -45,7 +45,7 @@ public class DijkstraTool implements Tool {
     }
 
     /**
-     * Initializes the Dijkstra algorithm.
+     * Initializes the Dijkstra algorithm. Creates a new stepthread that is then run step by step with step();
      */
     private void init() {
         if (startNode == null) {
@@ -106,6 +106,10 @@ public class DijkstraTool implements Tool {
         return graph;
     }
 
+    /**
+     * Sets the start node for the Dijkstra's algorithm.
+     * @param startNode 
+     */
     public void setStartNode(Node startNode) {
         this.startNode = startNode;
         loadSigns();
@@ -114,6 +118,9 @@ public class DijkstraTool implements Tool {
         }
     }
 
+    /**
+     * Saves the signs of the graph.
+     */
     private void saveSigns() {
         Node[] nodes = graph.getNodes().toArray(new Node[graph.getNodes().size()]);
         for (int i = 0; i < nodes.length; i++) {
@@ -121,6 +128,9 @@ public class DijkstraTool implements Tool {
         }
     }
 
+    /**
+     * Loads the signs in the graph to the same state as they were when they were saved.
+     */
     private void loadSigns() {
         Node[] nodes = graph.getNodes().toArray(new Node[graph.getNodes().size()]);
         for (int i = 0; i < nodes.length; i++) {
@@ -136,6 +146,11 @@ public class DijkstraTool implements Tool {
         graph.loadFromString(graphSave);
     }
 
+    /**
+     * Attaches the needed MouseListener to the DrawPanel of the 
+     * main frame. Saves the state of the graph.
+     * @param mf 
+     */
     @Override
     public void select(MainFrame mf) {
         if (dw == null) {
@@ -148,6 +163,11 @@ public class DijkstraTool implements Tool {
         dw.open();
     }
 
+    /**
+     * Unattaches the listener and restores the graph to the same state
+     * it was in when the tool was selected.
+     * @param mf 
+     */
     @Override
     public void deselect(MainFrame mf) {
         loadSigns();

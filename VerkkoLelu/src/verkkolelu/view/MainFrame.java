@@ -47,10 +47,10 @@ public class MainFrame extends JFrame {
         this.addComponentListener(new ComponentAdapter() {  
             private Rectangle bwas = MainFrame.this.getBounds();
 
-            @Override
             /**
              * Moves all the added JDialogs if they are not overlapping the main window
              */
+            @Override
             public void componentMoved(ComponentEvent e) {
                 Rectangle dbounds = MainFrame.this.getBounds();
                 int deltaX = dbounds.x - bwas.x;
