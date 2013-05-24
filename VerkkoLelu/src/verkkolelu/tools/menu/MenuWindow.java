@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import verkkolelu.view.MainFrame;
 
 /**
- * Used with MenuPanel to display the menu
+ * Used with MenuPanel to display and control the Menu.
  * @author mikko
  */
 public class MenuWindow extends JDialog {

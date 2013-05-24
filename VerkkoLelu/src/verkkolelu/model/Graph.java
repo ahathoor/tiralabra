@@ -115,6 +115,11 @@ public class Graph {
         return nodes;
     }
     
+    /**
+     * Returns a list of edges that go out from the given node.
+     * @param node
+     * @return 
+     */
     public ArrayList<Edge> getEdgesFrom(Node node) {
         return edges.get(node);
     }
@@ -195,7 +200,7 @@ public class Graph {
     private ArrayList<GraphChangeListener> graphListeners = new ArrayList();
 
     /**
-     * Notifies the registered GraphChangeListeners of changes
+     * Notifies the registered GraphChangeListeners of changes.
      */
     protected void notifyListeners() {
         for (GraphChangeListener graphChangeListener : graphListeners) {

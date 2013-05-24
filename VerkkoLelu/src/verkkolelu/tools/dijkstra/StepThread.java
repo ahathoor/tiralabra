@@ -44,6 +44,10 @@ public class StepThread extends Thread {
         }
     }
 
+    /**
+     * Returns the node that has the smallest dist -value.
+     * @return 
+     */
     private Node popNodeWithLowestDist() {
         int min = Integer.MAX_VALUE;
         int minIndex = 0;
@@ -59,6 +63,9 @@ public class StepThread extends Thread {
         return ret;
     }
 
+    /**
+     * Initialized the algorithm.
+     */
     public void init() {
 
         dist = new HashMap<>();

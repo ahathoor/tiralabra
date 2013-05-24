@@ -13,7 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * This console displays displays the System.out stream.
  * @author mikko
  */
 public class Console extends JDialog {
@@ -29,6 +29,10 @@ public class Console extends JDialog {
         this.setVisible(true);
         System.setOut(new PrintStream(new TextAreaOut(jt)));
     }
+    
+    /**
+     * 
+     */
     private class TextAreaOut extends OutputStream {
 
         private StringBuilder sb;

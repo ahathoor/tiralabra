@@ -37,6 +37,10 @@ public class DrawPanel extends JPanel implements GraphChangeListener {
         graph.loadFromString("0<nodeInternal>108<nodeInternal>135<nodeInternal>a<nodeInternal>-4144960<node>1<nodeInternal>105<nodeInternal>349<nodeInternal>b<nodeInternal>-4144960<node>2<nodeInternal>290<nodeInternal>394<nodeInternal>c<nodeInternal>-4144960<node>3<nodeInternal>278<nodeInternal>89<nodeInternal>d<nodeInternal>-4144960<node>4<nodeInternal>393<nodeInternal>243<nodeInternal>e<nodeInternal>-4144960<node><graphInternal>4<edgeInternal>3<edgeInternal>2<edge>4<edgeInternal>2<edgeInternal>3<edge>4<edgeInternal>1<edgeInternal>9<edge>4<edgeInternal>0<edgeInternal>10<edge>2<edgeInternal>4<edgeInternal>3<edge>2<edgeInternal>1<edgeInternal>4<edge>2<edgeInternal>0<edgeInternal>6<edge>2<edgeInternal>3<edgeInternal>7<edge>1<edgeInternal>2<edgeInternal>4<edge>1<edgeInternal>0<edgeInternal>5<edge>1<edgeInternal>3<edgeInternal>8<edge>1<edgeInternal>4<edgeInternal>9<edge>3<edgeInternal>0<edgeInternal>1<edge>3<edgeInternal>4<edgeInternal>2<edge>3<edgeInternal>2<edgeInternal>7<edge>3<edgeInternal>1<edgeInternal>8<edge>0<edgeInternal>3<edgeInternal>1<edge>0<edgeInternal>1<edgeInternal>5<edge>0<edgeInternal>2<edgeInternal>6<edge>0<edgeInternal>4<edgeInternal>10<edge>"); 
     }
 
+    /**
+     * Paints the graph to the panel.
+     * @param g 
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -95,6 +99,9 @@ public class DrawPanel extends JPanel implements GraphChangeListener {
         g.drawImage(textLayer, 0, 0, this);
     }
 
+    /**
+     * The graph uses this to notify the panel of changes
+     */
     @Override
     public void graphChanged() {
         this.repaint();
