@@ -17,7 +17,7 @@ public class Dijkstrawindow extends JDialog {
 
     private DijkstraTool d;
 
-    public Dijkstrawindow(DijkstraTool d, MainFrame mf) throws HeadlessException {
+    public Dijkstrawindow(DijkstraTool d, MainFrame mf){
         super(mf, "DijkstraTool");
         mf.addDialog(this);
         setFocusableWindowState(false);

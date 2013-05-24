@@ -22,14 +22,22 @@ public class MenuWindow extends JDialog {
     public MenuWindow(Menu m, MainFrame mf){
         super(mf, "Menu");
         mf.addDialog(this);
+        
         setFocusableWindowState(false);
         this.m = m;
         MenuPanel mp = new MenuPanel(m);
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         add(mp);
         pack();
         setSize(200, 220);
         setVisible(true);
         setFocusableWindowState(true);
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                MenuWindow.this.m.openWindow();
+            }
+        });
     }
 }

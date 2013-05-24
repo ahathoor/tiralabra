@@ -26,6 +26,7 @@ import verkkolelu.view.MainFrame;
 public class Menu implements KeyListener {
 
     DijkstraTool dijkstraTool;
+    MenuWindow mw;
 
     void command(MenuCommand command) {
         if (command == MenuCommand.CREATE) {
@@ -70,6 +71,10 @@ public class Menu implements KeyListener {
         }
     }
 
+    void openWindow() {
+        mw = new MenuWindow(this, mainFrame);
+    }
+
     protected enum MenuCommand {
 
         CREATE("Create", 'c'),
@@ -109,7 +114,7 @@ public class Menu implements KeyListener {
         this.graph = graph;
         this.mainFrame = mainFrame;
         selectTool(new CreateTool(graph));
-        MenuWindow mw = new MenuWindow(this, mainFrame);
+        mw = new MenuWindow(this, mainFrame);
         dijkstraTool = new DijkstraTool(graph);
     }
 
@@ -117,7 +122,6 @@ public class Menu implements KeyListener {
         deselectCurrentTool();
         selectedTool = tool;
         tool.select(mainFrame);
-        System.out.println(tool.getName() + " tool selected");
     }
 
     private void deselectCurrentTool() {

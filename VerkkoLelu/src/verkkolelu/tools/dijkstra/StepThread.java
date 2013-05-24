@@ -77,7 +77,6 @@ public class StepThread extends Thread {
         startNode.setLabel("prev: - dist: 0");
 
         System.out.println("Initialization: dist(Node n) = 0 for start node, INF for other nodes");
-        System.out.println("All nodes added to heap with their respective dist values as keys");
     }
 
     public boolean isDone() {
@@ -86,11 +85,12 @@ public class StepThread extends Thread {
 
     @Override
     public void run() {
+        pause();
         while (!unprocessedNodes.isEmpty()) {
             Node popped = popNodeWithLowestDist();
-            System.out.println("======================================================================================");
+            System.out.println("");
             System.out.println("Node " + popped.getSign() + " taken from the list of unprocessed nodes. It has a distance value of " + dist.get(popped) + ". ");
-            System.out.println("======================================================================================");
+            System.out.println("");
             popped.setColor(Color.BLUE);
 
             if (dist.get(popped) == Integer.MAX_VALUE) {

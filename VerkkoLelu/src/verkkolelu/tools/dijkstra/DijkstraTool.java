@@ -144,14 +144,14 @@ public class DijkstraTool implements Tool {
         saveGraph();
         saveSigns();
         reset();
-        mf.addMouseListener(listener);
+        mf.getDrawPanel().addMouseListener(listener);
         dw.open();
     }
 
     @Override
     public void deselect(MainFrame mf) {
         loadSigns();
-        mf.removeMouseListener(listener);
+        mf.getDrawPanel().removeMouseListener(listener);
         dw.close();
         loadGraph();
     }

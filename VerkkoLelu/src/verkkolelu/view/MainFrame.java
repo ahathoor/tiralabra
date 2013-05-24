@@ -8,6 +8,8 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JDialog;
@@ -22,25 +24,33 @@ import verkkolelu.util.ArrayList;
  */
 public class MainFrame extends JFrame {
 
-    DrawPanel p;
+    private DrawPanel drawPanel;
+
+    public DrawPanel getDrawPanel() {
+        return drawPanel;
+    }
 
     public MainFrame() {
         super("VerkkoLelu");
+        Console c = new Console(this);
         Graph maingraph = new Graph();
-        p = new DrawPanel(maingraph);
+        drawPanel = new DrawPanel(maingraph);
         this.addKeyListener(new Menu(maingraph, this));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        add(p);
+        add(drawPanel);
         pack();
         setSize(500, 500);
         setVisible(true);
-
-        this.setLocation(100, 100);
-        this.addComponentListener(new ComponentAdapter() {
-            
-            Rectangle bwas = MainFrame.this.getBounds();
+        this.setLocation(210, 0);
+        c.setLocation(150, 510);
+        
+        this.addComponentListener(new ComponentAdapter() {  
+            private Rectangle bwas = MainFrame.this.getBounds();
 
             @Override
+            /**
+             * Moves all the added JDialogs if they are not overlapping the main window
+             */
             public void componentMoved(ComponentEvent e) {
                 Rectangle dbounds = MainFrame.this.getBounds();
                 int deltaX = dbounds.x - bwas.x;
@@ -53,11 +63,16 @@ public class MainFrame extends JFrame {
                     dialog.setLocation(dloc.x + deltaX, dloc.y + deltaY);
                 }
                 bwas = MainFrame.this.getBounds();
-            }
+            }            
         });
+        
     }
-    ArrayList<JDialog> dialogs = new ArrayList<>();
+    private ArrayList<JDialog> dialogs = new ArrayList<>();
 
+    /**
+     * Callback handle for JDialogs.
+     * @param dialog 
+     */
     public void addDialog(JDialog dialog) {
         dialogs.add(dialog);
     }

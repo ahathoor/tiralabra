@@ -48,12 +48,12 @@ public class DeleteTool implements MouseListener, Tool {
 
     @Override
     public void select(MainFrame mf) {
-       mf.addMouseListener(this);
+       mf.getDrawPanel().addMouseListener(this);
     }
 
     @Override
     public void deselect(MainFrame mf) {
-        mf.removeMouseListener(this);
+        mf.getDrawPanel().removeMouseListener(this);
     }
 
     @Override

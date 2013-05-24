@@ -89,13 +89,13 @@ public class LinkTool implements MouseListener, Tool {
 
     @Override
     public void select(MainFrame mf) {
-        mf.addMouseListener(this);
+        mf.getDrawPanel().addMouseListener(this);
         reset();
     }
 
     @Override
     public void deselect(MainFrame mf) {
-        mf.removeMouseListener(this);
+        mf.getDrawPanel().removeMouseListener(this);
     }
     
     @Override

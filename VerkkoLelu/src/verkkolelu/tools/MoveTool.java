@@ -51,14 +51,14 @@ public class MoveTool implements MouseListener, Tool, MouseMotionListener {
 
     @Override
     public void select(MainFrame mf) {
-        mf.addMouseListener(this);
-        mf.addMouseMotionListener(this);
+        mf.getDrawPanel().addMouseListener(this);
+        mf.getDrawPanel().addMouseMotionListener(this);
     }
 
     @Override
     public void deselect(MainFrame mf) {
-        mf.removeMouseListener(this);
-        mf.removeMouseMotionListener(this);
+        mf.getDrawPanel().removeMouseListener(this);
+        mf.getDrawPanel().removeMouseMotionListener(this);
     }
 
     @Override
