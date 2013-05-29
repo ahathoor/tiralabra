@@ -11,7 +11,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 /**
- *
+ * Displays the control operations for DijkstraTool, defined in DijkstraCommand.
+ * Makes a button for each command.
  * @author ahathoor
  */
 public class DijkstraPanel extends JPanel{

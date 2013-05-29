@@ -4,10 +4,8 @@
  */
 package verkkolelu.tools.menu;
 
-import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import verkkolelu.model.Graph;
 import verkkolelu.tools.CreateTool;
@@ -16,7 +14,6 @@ import verkkolelu.tools.LinkTool;
 import verkkolelu.tools.MoveTool;
 import verkkolelu.tools.Tool;
 import verkkolelu.tools.dijkstra.DijkstraTool;
-import verkkolelu.view.DrawPanel;
 import verkkolelu.view.MainFrame;
 
 /**

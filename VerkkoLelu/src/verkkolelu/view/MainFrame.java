@@ -32,7 +32,6 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         super("VerkkoLelu");
-        Console c = new Console(this);
         Graph maingraph = new Graph();
         drawPanel = new DrawPanel(maingraph);
         this.addKeyListener(new Menu(maingraph, this));
@@ -41,8 +40,8 @@ public class MainFrame extends JFrame {
         pack();
         setSize(500, 500);
         setVisible(true);
+        Console c = new Console(this);
         this.setLocation(210, 0);
-        c.setLocation(150, 510);
         
         this.addComponentListener(new ComponentAdapter() {  
             private Rectangle bwas = MainFrame.this.getBounds();

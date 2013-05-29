@@ -28,6 +28,7 @@ public class Dijkstrawindow extends JDialog {
         pack();
         setSize(200,220);
         setVisible(false);
+        this.setLocation(mf.getBounds().x - this.getBounds().width - 10, mf.getBounds().y + this.getBounds().height + 10);
         setFocusableWindowState(true);
     }
 

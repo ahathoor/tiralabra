@@ -149,7 +149,6 @@ public class StepThread extends Thread {
             popped.setColor(Color.lightGray);
             pause();
         }
-        System.out.println("Algorithm finished!");
         isDone = true;
     }
 }

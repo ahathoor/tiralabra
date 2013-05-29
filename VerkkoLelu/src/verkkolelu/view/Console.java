@@ -14,6 +14,7 @@ import javax.swing.SwingUtilities;
 
 /**
  * This console displays displays the System.out stream.
+ *
  * @author mikko
  */
 public class Console extends JDialog {
@@ -21,17 +22,18 @@ public class Console extends JDialog {
     public Console(MainFrame mf) {
         super(mf, "Console");
         mf.addDialog(this);
-        JTextArea jt = new JTextArea(15, 50);
+        JTextArea jt = new JTextArea(15, 64);
         jt.setEditable(false);
         JScrollPane js = new JScrollPane(jt);
         this.add(js);
         this.pack();
         this.setVisible(true);
+        this.setLocation(mf.getBounds().x - (this.getBounds().width - mf.getBounds().width), mf.getBounds().y + mf.getBounds().height + 10);
         System.setOut(new PrintStream(new TextAreaOut(jt)));
     }
-    
+
     /**
-     * 
+     *
      */
     private class TextAreaOut extends OutputStream {
 
@@ -43,7 +45,6 @@ public class Console extends JDialog {
             sb = new StringBuilder();
         }
 
-        
         @Override
         public void write(int b) throws IOException {
 

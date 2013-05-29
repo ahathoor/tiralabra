@@ -7,7 +7,9 @@ package verkkolelu.util;
 import java.util.Iterator;
 
 /**
- *
+ * The Arraylist can store values of the given type. It will grow to accommodate 
+ * more values as it becomes full. It can be accessed by an iterator, and so using the
+ * for:each operation.
  * @author ahathoor
  */
 public class ArrayList<T0> implements Iterable<T0> {

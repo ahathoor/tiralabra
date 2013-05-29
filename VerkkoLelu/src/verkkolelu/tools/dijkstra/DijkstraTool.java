@@ -11,7 +11,10 @@ import verkkolelu.tools.Tool;
 import verkkolelu.view.MainFrame;
 
 /**
- *
+ * The dijkstratool can perform the dijkstra's algorithm on the graph given
+ * in the constructor. The method to set the start node must be called first. 
+ * After that the method Initialize must be called, and after that the step -method
+ * for as many times as it takes to finish the algorithm.
  * @author ahathoor
  */
 public class DijkstraTool implements Tool {
