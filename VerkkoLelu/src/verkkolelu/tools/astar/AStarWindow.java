@@ -2,42 +2,31 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package verkkolelu.tools.dijkstra;
+package verkkolelu.tools.astar;
 
-import java.awt.HeadlessException;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import verkkolelu.tools.commandable.CommandPanel;
 import verkkolelu.view.MainFrame;
 
 /**
- * DijkstraWindow creates a dialog to show the DijkstraPanel.
- * @author ahathoor
+ *
+ * @author mikko
  */
-public class Dijkstrawindow extends JDialog {
+public class AStarWindow extends JDialog {
 
-    private DijkstraTool d;
-
-    public Dijkstrawindow(DijkstraTool d, MainFrame mf){
-        super(mf, "DijkstraTool");
+    public AStarWindow(MainFrame mf, AStarTool astarTool) {
+        super(mf);
         mf.addDialog(this);
         setFocusableWindowState(false);
-        this.d = d;
-        CommandPanel p = new CommandPanel(d);
+        CommandPanel commandPanel = new CommandPanel(astarTool);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        add(p);
+        add(commandPanel);
         pack();
         setSize(200,220);
         setVisible(false);
         this.setLocation(mf.getBounds().x - this.getBounds().width - 10, mf.getBounds().y + this.getBounds().height + 10);
         setFocusableWindowState(true);
     }
-
-    public void close() {
-        setVisible(false);
-    }
-
-    void open() {
-        setVisible(true);
-    }
+    
 }

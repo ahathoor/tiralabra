@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import verkkolelu.tools.menu.Menu.MenuCommand;
 
 /**
- * Used to display Menu.
+ * Used to display Menu. Automatically makes a button for each of the commands in Menu.MenuCommand.
  * @author mikko
  */
 public class MenuPanel extends JPanel {

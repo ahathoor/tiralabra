@@ -5,7 +5,8 @@
 package verkkolelu.util;
 
 /**
- * A hashmap.
+ * A hashmap. Stores values under a key. The storing and retrieving takes amortized O(1) time.
+ * When the hashmap becomes too full, it grows to accommodate more values.
  * @author ahathoor
  */
 public class HashMap<T0, T1> {

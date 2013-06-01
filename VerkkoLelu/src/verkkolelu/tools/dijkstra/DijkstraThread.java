@@ -5,17 +5,17 @@ import java.awt.Color;
 import verkkolelu.model.Edge;
 import verkkolelu.model.Graph;
 import verkkolelu.model.Node;
+import verkkolelu.tools.commandable.StepThread;
 import verkkolelu.tools.dijkstra.DijkstraTool;
 import verkkolelu.util.ArrayList;
 import verkkolelu.util.HashMap;
 
 /**
- * A separate thread for the algorithm that pauses and waits for user to resume
- * it
+ * A separate thread for the Dijkstra's algorithm. It extends StepThread,
+ * so it pauses itself during execution and waits for a call to resumeThread().
  */
-public class StepThread extends Thread {
+public class DijkstraThread extends StepThread {
 
-    private volatile boolean running;
     private boolean isDone;
     Graph graph;
     Node startNode;
@@ -23,25 +23,11 @@ public class StepThread extends Thread {
     private HashMap<Node, Node> previous;
     private ArrayList<Node> unprocessedNodes;
 
-    public StepThread(Graph graph, Node startNode) {
+    public DijkstraThread(Graph graph, Node startNode) {
         this.graph = graph;
         this.startNode = startNode;
-        running = false;
         isDone = false;
         init();
-    }
-
-    /**
-     * Wakes up the thread
-     */
-    public void resumeThread() {
-        running = true;
-    }
-
-    private void pause() {
-        running = false;
-        while (!running) {
-        }
     }
 
     /**

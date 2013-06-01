@@ -4,11 +4,13 @@
  */
 package verkkolelu.tools.dijkstra;
 
+import verkkolelu.tools.commandable.ToolCommand;
+
 /**
  * Possible commands for the Dijkstra tool
  * @author ahathoor
  */
-public enum DijkstraCommand {
+public enum DijkstraCommand implements ToolCommand{
     
     /**
      * Initialize the Dijkstra
@@ -27,9 +29,14 @@ public enum DijkstraCommand {
      */
     RESET("Reset");
     
-    public final String NAME;
+    private final String name;
 
     private DijkstraCommand(String name) {
-        this.NAME = name;
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

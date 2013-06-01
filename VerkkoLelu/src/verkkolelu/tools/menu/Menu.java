@@ -13,11 +13,12 @@ import verkkolelu.tools.DeleteTool;
 import verkkolelu.tools.LinkTool;
 import verkkolelu.tools.MoveTool;
 import verkkolelu.tools.Tool;
+import verkkolelu.tools.astar.AStarTool;
 import verkkolelu.tools.dijkstra.DijkstraTool;
 import verkkolelu.view.MainFrame;
 
 /**
- *
+ * The Menu class takes commands and executes them for the graph given in the constructor.
  * @author ahathoor
  */
 public class Menu implements KeyListener {
@@ -52,6 +53,9 @@ public class Menu implements KeyListener {
         if (command == MenuCommand.CLEAR) {
             selectTool(new CreateTool(graph));
             graph.empty();
+        }
+        if (command == MenuCommand.ASTAR) {
+            selectTool(new AStarTool(graph));
         }
         if (command == MenuCommand.DIJKSTRA) {
             selectTool(dijkstraTool);
@@ -93,6 +97,7 @@ public class Menu implements KeyListener {
         LOAD("Load from string", 'l'),
         CLEAR("Clear graph"),
         DIJKSTRA("Dijkstra tool", 'd'),
+        ASTAR("AStar tool", 'a'),
         QUIT("Quit");
         private String name;
         private Character hotkey;

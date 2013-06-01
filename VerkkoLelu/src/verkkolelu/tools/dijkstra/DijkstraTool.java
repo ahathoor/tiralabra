@@ -8,16 +8,24 @@ import verkkolelu.util.ArrayList;
 import verkkolelu.model.Graph;
 import verkkolelu.model.Node;
 import verkkolelu.tools.Tool;
+import verkkolelu.tools.commandable.CommandableTool;
+import verkkolelu.tools.commandable.ToolCommand;
 import verkkolelu.view.MainFrame;
 
 /**
- * The dijkstratool can perform the dijkstra's algorithm on the graph given
- * in the constructor. The method to set the start node must be called first. 
- * After that the method Initialize must be called, and after that the step -method
+ * The dijkstratool can perform the dijkstra's algorithm on the graph given in
+ * the constructor. The method to set the start node must be called first. After
+ * that the method Initialize must be called, and after that the step -method
  * for as many times as it takes to finish the algorithm.
+ *
  * @author ahathoor
  */
-public class DijkstraTool implements Tool {
+public class DijkstraTool implements CommandableTool {
+
+    @Override
+    public ToolCommand[] getCommands() {
+        return DijkstraCommand.values();
+    }
 
     protected enum State {
 
@@ -27,7 +35,7 @@ public class DijkstraTool implements Tool {
     private DijkstraListener listener;
     private Dijkstrawindow dw;
     private Node startNode;
-    StepThread stepThread;
+    DijkstraThread stepThread;
     protected State state;
     private String graphSave;
     private ArrayList<String> signSave;
@@ -48,7 +56,8 @@ public class DijkstraTool implements Tool {
     }
 
     /**
-     * Initializes the Dijkstra algorithm. Creates a new stepthread that is then run step by step with step();
+     * Initializes the Dijkstra algorithm. Creates a new stepthread that is then
+     * run step by step with step();
      */
     private void init() {
         if (startNode == null) {
@@ -57,7 +66,7 @@ public class DijkstraTool implements Tool {
         }
         //Set state to initialized and create the stepping thread
         state = State.INITIALIZED;
-        stepThread = new StepThread(graph, startNode);
+        stepThread = new DijkstraThread(graph, startNode);
         stepThread.start();
     }
 
@@ -82,7 +91,8 @@ public class DijkstraTool implements Tool {
      *
      * @param command input command
      */
-    void command(DijkstraCommand command) {
+    @Override
+    public void command(ToolCommand command) {
         if (command == DijkstraCommand.SELECT_START) {
             if (state == State.INITIALIZED) {
                 System.out.println("Error: algorithm running, can't set start node");
@@ -111,7 +121,8 @@ public class DijkstraTool implements Tool {
 
     /**
      * Sets the start node for the Dijkstra's algorithm.
-     * @param startNode 
+     *
+     * @param startNode
      */
     public void setStartNode(Node startNode) {
         this.startNode = startNode;
@@ -132,7 +143,8 @@ public class DijkstraTool implements Tool {
     }
 
     /**
-     * Loads the signs in the graph to the same state as they were when they were saved.
+     * Loads the signs in the graph to the same state as they were when they
+     * were saved.
      */
     private void loadSigns() {
         Node[] nodes = graph.getNodes().toArray(new Node[graph.getNodes().size()]);
@@ -150,9 +162,10 @@ public class DijkstraTool implements Tool {
     }
 
     /**
-     * Attaches the needed MouseListener to the DrawPanel of the 
-     * main frame. Saves the state of the graph.
-     * @param mf 
+     * Attaches the needed MouseListener to the DrawPanel of the main frame.
+     * Saves the state of the graph.
+     *
+     * @param mf
      */
     @Override
     public void select(MainFrame mf) {
@@ -167,9 +180,10 @@ public class DijkstraTool implements Tool {
     }
 
     /**
-     * Unattaches the listener and restores the graph to the same state
-     * it was in when the tool was selected.
-     * @param mf 
+     * Unattaches the listener and restores the graph to the same state it was
+     * in when the tool was selected.
+     *
+     * @param mf
      */
     @Override
     public void deselect(MainFrame mf) {
